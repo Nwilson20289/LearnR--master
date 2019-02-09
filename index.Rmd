@@ -1,5 +1,5 @@
 ---
-title: "MyLabJournal"
+title: "Norlander Learn's R "
 output: html_document
 ---
 
@@ -13,31 +13,158 @@ output: html_document
 }
 
 </style>
+### Problem 1 
 
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
+Do simple math with numbers, addition, subtraction, multiplication, division
 
-# **My Lab Journal**
+```{r}
+1+1 
+3-2
+4*6
+5/7
+```
 
-This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too. Rand Change 
+#Problem 2 
 
-## How to use
+Put numbers into variables, do simple math on the variables
+```{r, eval=FALSE}
+Norie <-1
+ABC <-537848756781637
 
-1. fork the repo for this website and follow instructions on read me to get set up. [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
+a <-1
+b <-"five"
 
-2. Blog/journal what you are doing in R, by editing the Journal.Rmd. See the [Journal page](https://crumplab.github.io/LabJournalWebsite/Journal.html) for an example of what to do to get started learning R.
+a+b
+```
+#Problem 3 
 
-3. See the [links page](https://crumplab.github.io/LabJournalWebsite/Links.html) for lots of helpful links on learning R.
-
-4. Change everything to make it your own. Blah 
+Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
 
 
-</div>
-<div class="col-sm-6">
+```{r}
+Numbers_List <-seq(1:100)
 
-### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
+for (i in 1:length(Numbers_List)){
+  print(Numbers_List[[i]])
+}
 
-<a href = "https://crumplab.github.io">
-![](images/logo.png)
-</a>
-</div>
+```
+#Problem 4
+Find the sum of all the integer numbers from 1 to 100
+
+```{r}
+Numbers_List <-seq(1:100)
+
+for (i in 1:length(Numbers_List)){
+  print(Numbers_List[[i]])
+}
+sum(Numbers_List)
+```
+
+#Problem 5 
+Write a function to find the sum of all integers between any two values.
+
+
+#Problem 6 
+List all of the odd numbers from 1 to 100.
+```{r}
+Odd_numbers <-seq(1, 99, 2)
+ print(Odd_numbers)
+
+```
+
+#Problem 7 
+List all of the prime numbers from 1 to 1000.
+```{r}
+Prime_Numbers <-(1:500)*2
+print(Prime_Numbers)
+```
+
+#Problem 8 
+Generate 100 random numbers
+```{r}
+rnorm(100) 
+```
+
+#Problem 9 
+Generate 100 random numbers within a specific range 
+<!-- ASK IF THESE PARMETERS ARE WHAT HE WANTS? -->
+```{r}
+rnorm(100, mean = 6, sd = 6)
+
+```
+
+#Problem 10 A Mean
+Write your own functions to give descriptive statistics for a vector variable storing multiple numbers. Write functions for the following without using R intrinsics: mean, mode, median, range, standard deviation
+
+```{r}
+x_mean <-c(1,3,9,-22,22,6,7,10,15,4,25)
+my_fun <-function(x_mean){ sum(x_mean)/length(x_mean)} 
+print(my_fun(x_mean))
+```
+
+
+#Problem B Mode
+```{r}
+Y<-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)
+C=table(Y)
+
+names(which.max(C))
+
+
+```
+
+#Problem 11 
+Count the number of characters in a string variable. 
+```{r}
+Count1 <-c(1,3,9,-22,22,6,7,10,15,4,25)
+
+length(Count1)
+
+```
+
+#Problem 12 
+Count the number of words in a string variable
+```{r}
+letter<-c("jtymhrtyoilnk")
+strsplit(letter, split = "")
+
+length(letter)
+
+```
+#Problem 13 
+Count the number of sentences in a string variable
+```{r}
+strV<-"How can we understand R if we don't read"
+sapply(strsplit(strV," "),length)
+
+```
+#Problem 14 *ASK*
+Count the number of times a specific character occurs in a string variable
+
+```{r}
+Str1<-"bbbjshjfsiiiisihfksbjsuuuus"
+(strsplit(Str1,""))
+
+table(Str1)
+
+
+```
+#Problem 15 
+Do a logical test to see if one word is found within the text of another string variable.
+
+```{r}
+Word<-"Learning"
+sentence<-" Learning R is hard "
+
+grepl(Word,sentence)
+
+```
+#Problem 16 ASK
+Put the current computer time in milliseconds into a variable
+
+```{r}
+print(as.numeric(Sys.time())*1000, digits=15)
+```
+#Problem 17 ask
