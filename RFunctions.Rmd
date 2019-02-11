@@ -52,7 +52,7 @@ dir(path = ".")
 list.files()
 produces a character vector of the names of files or directories in the named directory.
 ```{r}
-list.files()
+#list.files()
 
 
 ```
@@ -157,90 +157,477 @@ cbinded_df
 #Slicing and extracting data
 ##indexing vectors
 x[n] nth element
+```{r}
+```
+
 x[-n] all but nth element
+```{r}
+
+```
+
 x[1:n] first n elements
+```{r}
+
+```
+
 x[-(1:n)] elements from n+1 to the end
+```{r}
+
+```
+
 x[c(1,4,2)] specific elements
+```{r}
+
+```
+
 x[“name”] elements named “name”
+```{r}
+
+```
+
+
 x[x>3] all elements greater than 3
+```{r}
+
+```
+
+
 x[x > 3 & x < 5] all elements between 3 and 5
+```{r}
+
+```
+
+
 x[x %in% c(“a”,“and”,“the”)] all elements in given set
+```{r}
+
+```
+
 
 ##Indexing lists
 x[n] list with elements n
+```{r}
+
+```
+
 x[[n]] nt h element of the list
+```{r}
+
+```
+
 x[[“name”]] element of the list named “name”
+```{r}
+
+```
+
 x$name id.
+```{r}
+
+```
+
 
 ##Indexing matrices
 x[i,j] element at row i, column j
+```{r}
+
+```
+
 x[i,] row i
+```{r}
+
+```
+
 x[,j] column j
+```{r}
+
+```
+
 x[,c(1,3)] columns 1 and 3
+```{r}
+
+```
+
 x[“name”,] row named “name”
+```{r}
+
+```
+
 
 ##Indexing data frames (matrix indexing plus the following)
 x[[“name”]] column named “name”
+```{r}
+
+```
+
 x$nameid.
+```{r}
+
+```
+
 ##Variable conversion
 as.data.frame(x)
+Functions to check if an object is a data frame, or coerce it if possible.
+```{r}
+df2 <- as.data.frame(matrix(1:10,3,4,7),1:5)
+print(df2)
+```
+
 as.numeric(x)
-as.logical(x)
-as.character(x)
+Creates or coerces objects of type "numeric". is.numeric is a more general test of an object being interpretable as numbers.
+
+```{r}
+df1 <- as.numeric(matrix(1:10,3,4,7),1:5)
+print(df1)
+```
+
+as.logical(x)*ask*
+```{r}
+
+as.logical(0:5,1,2,8)
+```
+
+as.character(x)*ask*
+Creates or coerces objects of type "numeric". is.numeric is a more general test of an object being interpretable as numbers.
+```{r}
+x = as.character(3.14)
+
+print((x))
+
+
+```
+
 ##Variable information
 is.na(x)
+table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.
+
+```{r}
+x<-c(1,5,6,7,9,NA)
+is.na(x)
+```
+
+
 is.null(x)
-is.data.frame(x)
-is.numeric(x)
-is.character(x)
+NULL represents the null object in R: it is a reserved word. NULL is often returned by expressions and functions whose value is undefined.
+
+```{r}
+x<-c(1,4,5,6,9,5,3,5,6,0)
+x > 5
+is.null(x)
+
+
+
+```
+
+is.data.frame(x)*ask* 
+
+
+
+
+is.character(x)*ask*
+
 length(x)
-dim(x)
-dimnames(x)
+Get or set the length of vectors (including lists) and factors, and of any other R object for which a method has been defined.
+```{r}
+Count1 <-c(1,3,9,-22,22,6,7,10,15,4,25)
+
+length(Count1)
+```
+
+
+dim(x)*ask*
+
+dimnames(x)*ask*
+
 nrow(x)
+nrow and ncol return the number of rows or columns present in x. NCOL and NROW do the same treating a vector as 1-column matrix, even a 0-length vector, compatibly with as.matrix() or cbind(), see the example
+```{r}
+
+n<- matrix(1:12 )
+nrow(n)
+
+```
+
+
 ncol(x)
+ ncol return the number of rows or columns present in x. NCOL and NROW do the same treating a vector as 1-column matrix, even a 0-length vector, compatibly with as.matrix() or cbind(), see the example
+```{r}
+n<- matrix(1:12,5 )
+ncol(n)
+```
+
+
 class()
-attributes()
+R possesses a simple generic function mechanism which can be used for an object-oriented style of programming. Method dispatch takes place based on the class of the first argument to the generic function.
+```{r}
+x<-c(1,3, 5, 7, 8, 10)
+class(x)
+
+a<-c('Norlander, Annalouise, Ana, Marsha')
+class(a)
+
+```
+
+
+
+attributes()*ask*
+These functions access an object's attributes. The first form below returns the object's attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object's attributes (if appropriate)
+```{r}
+
+attributes(10)
+```
+
+
 ##Data selection and manipulation
 which.max()
+Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector.
+```{r}
+Y<-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)
+C=table(Y)
+
+names(which.max(C))
+
+```
+
 which.min()
+Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector.
+```{r}
+Y<-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)
+C=table(Y)
+
+names(which.min(C))
+```
+
 which()
+
 sort()
+Sort (or order) a vector or factor (partially) into ascending or descending order. For ordering along more than one variable, e.g., for sorting data frames, see order.
+```{r}
+Y<-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+sort(Y)
+```
+
 unique()
+unique returns a vector, data frame or array like x but with duplicate elements/rows removed.
+```{r}
+Y<-c(1:3, 32:23, 8 - 0:5)
+unique(Y)
+```
+
 table()
+table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.
+```{r}
+Y<-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)
+
+```
+
 sample()
-Math
+sample takes a sample of the specified size from the elements of x using either with or without replacement.
+
+```{r,eval=F}
+x<-c(1:12)
+sample(x)
+Bootstramping
+sample(x, replace = TRUE)
+```
+
+#Math
 max()
+```{r}
+Numbers_List <-c(1,10,12,13,15,20,16,3,5,6,79,10)
+max(Numbers_List)
+```
+
+
 min()
+```{r}
+Numbers_List <-c(1,10,12,13,15,20,16,3,5,6,79,10)
+min(Numbers_List)
+
+```
+
 range()
+range returns a vector containing the minimum and maximum of all the given arguments.
+```{r}
+Numbers_List <-c(1,10,12,13,15,20,16,3,5,6,79,10)
+range(Numbers_List)
+```
+
+
 sum()
+sum returns the sum of all the values present in its arguments.
+```{r}
+Numbers_List <-seq(1:100)
+sum(Numbers_List)
+```
+
 mean()
+Generic function for the (trimmed) arithmetic mean.
+```{r}
+Numbers_List <-c(1,10,15,20)
+mean(Numbers_List)
+```
+
 median()
+Compute the sample median.
+```{r}
+Numbers_List <-c(1, 10 ,15 , 20)
+median(Numbers_List)
+```
+
 var()
+var, cov and cor compute the variance of x and the covariance or correlation of x and y if these are vectors. If x and y are matrices then the covariances (or correlations) between the columns of x and the columns of y are computed.
+```{r}
+Numbers_List <-c(1,10,12,13,15,20,16,3,5,6,79,10)
+var(Numbers_List)
+```
+
+
 sd()
-cor()
+This function computes the standard deviation of the values in x. If na.rm is TRUE then missing values are removed before computation proceeds.
+```{r}
+Numbers_List <-c(1,10,12,13,15,20,16,3,5,6,79,10)
+sd(Numbers_List)
+```
+
+cor()*ask*
+
+
 round()
+ceiling takes a single numeric argument x and returns a numeric vector containing the smallest integers not less than the corresponding elements of x.
+```{r}
+x = 12.6
+round(x)
+```
+
 abs()
+abs(x) computes the absolute value of x, sqrt(x) computes the (principal) square root of x, √{x}.
+```{r}
+x <- c(-2,4,0,45,9,-4)
+abs(x)
+
+
+```
+
+
 ##Matrices
 t()
+
 diag()
+Extract or replace the diagonal of a matrix, or construct a diagonal matrix.
+```{r}
+df2 <-matrix(1:10,3,4,7)
+diag(df2)
+diag(4, 6, 2, names = TRUE)
+```
+
+
 rowSums()
+Form row and column sums and means for numeric arrays (or data frames).
+
+```{r}
+df2 <-matrix(1:10,3,4,7)
+print(df2)
+rowSums(df2)
+
+
+
+```
+
+
 colSums()
+Form row and column sums and means for numeric arrays (or data frames).
+
+```{r}
+df2 <-matrix(1:10,3,4,7)
+print(df2)
+colSums(df2)
+```
+
+
 rowMeans()
+Form row and column sums and means for numeric arrays (or data frames).
+
+```{r}
+df2 <-matrix(1:10,3,4,7)
+print(df2)
+rowMeans(df2)
+```
+
+
 colMeans()
+```{r}
+df2 <-matrix(1:10,3,4,7)
+print(df2)
+colMeans(df2)
+```
+
+
 ##Advanced Data processing
 apply()
+```{r}
+
+```
+
 aggregate()
+```{r}
+
+```
+
 ##Strings
 paste()
+```{r}
+
+```
+
 strsplit()
+```{r}
+
+```
+
 tolower()
+```{r}
+
+```
+
 toupper
+```{r}
+
+```
+
 ##Plotting
 hist()
+```{r}
+x<-c(0, 1, 2, 6, 8, 10, 12)
+y<-c(0, 4, 6, 6,7,10, 11)
+hist(x+y)
+```
+
 plot()
+```{r}
+
+x<-c(0, 1, 2, 6, 8, 10, 12)
+y<-c(0, 4, 6, 6,7,10, 11)
+plot(x)
+```
+
 ##Distributions
 rnorm()
+```{r}
+rnorm(10, mean=3, sd= 1)
+```
+
 runif()
+```{r}
+x<-c (1, 3, 5, 7,8)
+y<-c(x+2)
+print(y)
+ 
+runif(x, min = 5 , max = 8)
+    ```
+
 ##Programming
 show that you can define a function
 show that you can write a for loop

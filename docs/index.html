@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Norlander Learn’s R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Norlander Learn's R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="RBasics.html">R Basic's</a>
+</li>
+<li>
+  <a href="RFunctions.html">R Functions</a>
+</li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Norlander Learn’s R</h1>
+
+</div>
+
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+<div id="problem-1" class="section level3">
+<h3>Problem 1</h3>
+<p>Do simple math with numbers, addition, subtraction, multiplication, division</p>
+<pre class="r"><code>1+1 </code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>3-2</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>4*6</code></pre>
+<pre><code>## [1] 24</code></pre>
+<pre class="r"><code>5/7</code></pre>
+<pre><code>## [1] 0.7142857</code></pre>
+</div>
+<div id="problem-2" class="section level1">
+<h1>Problem 2</h1>
+<p>Put numbers into variables, do simple math on the variables</p>
+<pre class="r"><code>Norie &lt;-1
+ABC &lt;-537848756781637
+
+a &lt;-1
+b &lt;-&quot;five&quot;
+
+a+b</code></pre>
+</div>
+<div id="problem-3" class="section level1">
+<h1>Problem 3</h1>
+<p>Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.</p>
+<pre class="r"><code>Numbers_List &lt;-seq(1:100)
+
+for (i in 1:length(Numbers_List)){
+  print(Numbers_List[[i]])
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 11
+## [1] 12
+## [1] 13
+## [1] 14
+## [1] 15
+## [1] 16
+## [1] 17
+## [1] 18
+## [1] 19
+## [1] 20
+## [1] 21
+## [1] 22
+## [1] 23
+## [1] 24
+## [1] 25
+## [1] 26
+## [1] 27
+## [1] 28
+## [1] 29
+## [1] 30
+## [1] 31
+## [1] 32
+## [1] 33
+## [1] 34
+## [1] 35
+## [1] 36
+## [1] 37
+## [1] 38
+## [1] 39
+## [1] 40
+## [1] 41
+## [1] 42
+## [1] 43
+## [1] 44
+## [1] 45
+## [1] 46
+## [1] 47
+## [1] 48
+## [1] 49
+## [1] 50
+## [1] 51
+## [1] 52
+## [1] 53
+## [1] 54
+## [1] 55
+## [1] 56
+## [1] 57
+## [1] 58
+## [1] 59
+## [1] 60
+## [1] 61
+## [1] 62
+## [1] 63
+## [1] 64
+## [1] 65
+## [1] 66
+## [1] 67
+## [1] 68
+## [1] 69
+## [1] 70
+## [1] 71
+## [1] 72
+## [1] 73
+## [1] 74
+## [1] 75
+## [1] 76
+## [1] 77
+## [1] 78
+## [1] 79
+## [1] 80
+## [1] 81
+## [1] 82
+## [1] 83
+## [1] 84
+## [1] 85
+## [1] 86
+## [1] 87
+## [1] 88
+## [1] 89
+## [1] 90
+## [1] 91
+## [1] 92
+## [1] 93
+## [1] 94
+## [1] 95
+## [1] 96
+## [1] 97
+## [1] 98
+## [1] 99
+## [1] 100</code></pre>
+</div>
+<div id="problem-4" class="section level1">
+<h1>Problem 4</h1>
+<p>Find the sum of all the integer numbers from 1 to 100</p>
+<pre class="r"><code>Numbers_List &lt;-seq(1:100)
+
+for (i in 1:length(Numbers_List)){
+  print(Numbers_List[[i]])
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 11
+## [1] 12
+## [1] 13
+## [1] 14
+## [1] 15
+## [1] 16
+## [1] 17
+## [1] 18
+## [1] 19
+## [1] 20
+## [1] 21
+## [1] 22
+## [1] 23
+## [1] 24
+## [1] 25
+## [1] 26
+## [1] 27
+## [1] 28
+## [1] 29
+## [1] 30
+## [1] 31
+## [1] 32
+## [1] 33
+## [1] 34
+## [1] 35
+## [1] 36
+## [1] 37
+## [1] 38
+## [1] 39
+## [1] 40
+## [1] 41
+## [1] 42
+## [1] 43
+## [1] 44
+## [1] 45
+## [1] 46
+## [1] 47
+## [1] 48
+## [1] 49
+## [1] 50
+## [1] 51
+## [1] 52
+## [1] 53
+## [1] 54
+## [1] 55
+## [1] 56
+## [1] 57
+## [1] 58
+## [1] 59
+## [1] 60
+## [1] 61
+## [1] 62
+## [1] 63
+## [1] 64
+## [1] 65
+## [1] 66
+## [1] 67
+## [1] 68
+## [1] 69
+## [1] 70
+## [1] 71
+## [1] 72
+## [1] 73
+## [1] 74
+## [1] 75
+## [1] 76
+## [1] 77
+## [1] 78
+## [1] 79
+## [1] 80
+## [1] 81
+## [1] 82
+## [1] 83
+## [1] 84
+## [1] 85
+## [1] 86
+## [1] 87
+## [1] 88
+## [1] 89
+## [1] 90
+## [1] 91
+## [1] 92
+## [1] 93
+## [1] 94
+## [1] 95
+## [1] 96
+## [1] 97
+## [1] 98
+## [1] 99
+## [1] 100</code></pre>
+<pre class="r"><code>sum(Numbers_List)</code></pre>
+<pre><code>## [1] 5050</code></pre>
+</div>
+<div id="problem-5" class="section level1">
+<h1>Problem 5</h1>
+<p>Write a function to find the sum of all integers between any two values.</p>
+</div>
+<div id="problem-6" class="section level1">
+<h1>Problem 6</h1>
+<p>List all of the odd numbers from 1 to 100.</p>
+<pre class="r"><code>Odd_numbers &lt;-seq(1, 99, 2)
+ print(Odd_numbers)</code></pre>
+<pre><code>##  [1]  1  3  5  7  9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45
+## [24] 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91
+## [47] 93 95 97 99</code></pre>
+</div>
+<div id="problem-7" class="section level1">
+<h1>Problem 7</h1>
+<p>List all of the prime numbers from 1 to 1000.</p>
+<pre class="r"><code>Prime_Numbers &lt;-(1:500)*2
+print(Prime_Numbers)</code></pre>
+<pre><code>##   [1]    2    4    6    8   10   12   14   16   18   20   22   24   26   28
+##  [15]   30   32   34   36   38   40   42   44   46   48   50   52   54   56
+##  [29]   58   60   62   64   66   68   70   72   74   76   78   80   82   84
+##  [43]   86   88   90   92   94   96   98  100  102  104  106  108  110  112
+##  [57]  114  116  118  120  122  124  126  128  130  132  134  136  138  140
+##  [71]  142  144  146  148  150  152  154  156  158  160  162  164  166  168
+##  [85]  170  172  174  176  178  180  182  184  186  188  190  192  194  196
+##  [99]  198  200  202  204  206  208  210  212  214  216  218  220  222  224
+## [113]  226  228  230  232  234  236  238  240  242  244  246  248  250  252
+## [127]  254  256  258  260  262  264  266  268  270  272  274  276  278  280
+## [141]  282  284  286  288  290  292  294  296  298  300  302  304  306  308
+## [155]  310  312  314  316  318  320  322  324  326  328  330  332  334  336
+## [169]  338  340  342  344  346  348  350  352  354  356  358  360  362  364
+## [183]  366  368  370  372  374  376  378  380  382  384  386  388  390  392
+## [197]  394  396  398  400  402  404  406  408  410  412  414  416  418  420
+## [211]  422  424  426  428  430  432  434  436  438  440  442  444  446  448
+## [225]  450  452  454  456  458  460  462  464  466  468  470  472  474  476
+## [239]  478  480  482  484  486  488  490  492  494  496  498  500  502  504
+## [253]  506  508  510  512  514  516  518  520  522  524  526  528  530  532
+## [267]  534  536  538  540  542  544  546  548  550  552  554  556  558  560
+## [281]  562  564  566  568  570  572  574  576  578  580  582  584  586  588
+## [295]  590  592  594  596  598  600  602  604  606  608  610  612  614  616
+## [309]  618  620  622  624  626  628  630  632  634  636  638  640  642  644
+## [323]  646  648  650  652  654  656  658  660  662  664  666  668  670  672
+## [337]  674  676  678  680  682  684  686  688  690  692  694  696  698  700
+## [351]  702  704  706  708  710  712  714  716  718  720  722  724  726  728
+## [365]  730  732  734  736  738  740  742  744  746  748  750  752  754  756
+## [379]  758  760  762  764  766  768  770  772  774  776  778  780  782  784
+## [393]  786  788  790  792  794  796  798  800  802  804  806  808  810  812
+## [407]  814  816  818  820  822  824  826  828  830  832  834  836  838  840
+## [421]  842  844  846  848  850  852  854  856  858  860  862  864  866  868
+## [435]  870  872  874  876  878  880  882  884  886  888  890  892  894  896
+## [449]  898  900  902  904  906  908  910  912  914  916  918  920  922  924
+## [463]  926  928  930  932  934  936  938  940  942  944  946  948  950  952
+## [477]  954  956  958  960  962  964  966  968  970  972  974  976  978  980
+## [491]  982  984  986  988  990  992  994  996  998 1000</code></pre>
+</div>
+<div id="problem-8" class="section level1">
+<h1>Problem 8</h1>
+<p>Generate 100 random numbers</p>
+<pre class="r"><code>rnorm(100) </code></pre>
+<pre><code>##   [1] -0.212661962  0.146370929  0.171736039  0.694913696  0.848329937
+##   [6] -0.608038507  0.491589803 -1.889248610 -1.155032038 -1.789028320
+##  [11]  1.390935972 -1.739503462  1.069949238 -0.368919598 -0.742482893
+##  [16]  0.567052864 -1.759891366 -0.241886966 -0.419961615  0.057025928
+##  [21]  0.072746596 -1.101111762 -0.399948955  0.499014040  1.009620288
+##  [26] -0.248613741 -0.438586806  1.928361122  0.670088401 -0.023797738
+##  [31]  0.482143016  0.629457294  1.654594963 -0.003852177 -0.898904274
+##  [36]  1.268378089  0.109542410 -0.981675951 -0.353428660  0.608818771
+##  [41]  2.427941900  1.251076625 -1.776464882  0.072150357 -1.340225689
+##  [46] -1.034765193 -1.155802056 -1.639138485  1.121231848 -0.800222208
+##  [51] -1.733700355  0.376693747  0.372209188  0.369162550 -1.297706269
+##  [56]  0.839493754  0.524208516  0.065108428  1.650593658  1.049897117
+##  [61] -0.949388933  0.809678115 -0.536967021 -1.237278720  0.569526971
+##  [66]  0.459920110 -0.806941344  0.426369524 -1.459971404 -0.926640121
+##  [71]  0.737418015  0.238258772  0.038503978 -0.260258619 -1.779387770
+##  [76]  0.648974418  1.246113533  1.296992302 -0.402816079 -0.733090182
+##  [81]  2.120620966 -1.234838851 -0.502296333 -0.835938106 -0.609817402
+##  [86] -0.427749424  1.610045442  1.067112959  0.226697430  0.529306671
+##  [91] -0.338291772 -0.862587709  0.073708504 -0.475440775  1.659673212
+##  [96]  0.141147857 -0.678665746  1.631943964 -0.252311939  1.364942983</code></pre>
+</div>
+<div id="problem-9" class="section level1">
+<h1>Problem 9</h1>
+<p>Generate 100 random numbers within a specific range <!-- ASK IF THESE PARMETERS ARE WHAT HE WANTS? --></p>
+<pre class="r"><code>rnorm(100, mean = 6, sd = 6)</code></pre>
+<pre><code>##   [1] -0.99342099 11.90451494  5.04093654  2.06868421 -3.72457113
+##   [6] 10.40864418 -0.87222736  4.32737651  3.20980611  3.44937880
+##  [11]  1.05857430  6.72389208  5.85360533  3.70249956  4.62534279
+##  [16]  5.62229872  8.75104350 15.39466186  2.56620365  4.79355487
+##  [21]  8.75939970  0.61196383 15.59255307  7.56971095  2.66609560
+##  [26]  0.35888577 11.00430780 11.55584144  7.39230598  8.01573155
+##  [31]  0.94685010  4.74750935  6.02842227  2.02261491 13.92179726
+##  [36]  1.61493153 15.69359127  3.96351766 10.89679734  1.67502607
+##  [41]  4.98022548  9.29541683  5.92617512  4.41731858  9.77044718
+##  [46] 12.80121064  7.05172431 -2.63143755  8.58545252  9.54621065
+##  [51]  2.02392017  6.31434164  6.77062380 -0.18144810 13.68941114
+##  [56]  7.93975372  3.84264868  6.37044477 14.87211634  0.60928232
+##  [61]  1.70196230 13.70171859 -5.40976852  1.30329692  7.89314641
+##  [66] -4.82690713  2.68798084  2.78367241 15.33399715 11.73583355
+##  [71]  8.72245811  7.94709183  2.77657906  9.25559492  1.19845801
+##  [76] 12.66488111 -2.73577521 -2.13712816 -0.67301759  2.76069091
+##  [81]  9.42750544  3.68682235  0.09621032 -4.27566121  2.94231393
+##  [86] -1.65388066 -0.03267925 12.30680806  9.64031693  9.98864706
+##  [91]  3.04246784  7.93111822  4.38771879  7.14462650  5.64212876
+##  [96] 11.62675113 14.96594935 -1.71540123  2.71813045 19.07095208</code></pre>
+</div>
+<div id="problem-10-a-mean" class="section level1">
+<h1>Problem 10 A Mean</h1>
+<p>Write your own functions to give descriptive statistics for a vector variable storing multiple numbers. Write functions for the following without using R intrinsics: mean, mode, median, range, standard deviation</p>
+<pre class="r"><code>x_mean &lt;-c(1,3,9,-22,22,6,7,10,15,4,25)
+my_fun &lt;-function(x_mean){ sum(x_mean)/length(x_mean)} 
+print(my_fun(x_mean))</code></pre>
+<pre><code>## [1] 7.272727</code></pre>
+</div>
+<div id="problem-b-mode" class="section level1">
+<h1>Problem B Mode</h1>
+<pre class="r"><code>Y&lt;-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)</code></pre>
+<pre><code>## Y
+## -22   1   3   4   6   7   9  10  15  22  25  56 
+##   1   1   1   1   1   2   1   1   1   4   1   1</code></pre>
+<pre class="r"><code>C=table(Y)
+
+names(which.max(C))</code></pre>
+<pre><code>## [1] &quot;22&quot;</code></pre>
+</div>
+<div id="problem-11" class="section level1">
+<h1>Problem 11</h1>
+<p>Count the number of characters in a string variable.</p>
+<pre class="r"><code>Count1 &lt;-c(1,3,9,-22,22,6,7,10,15,4,25)
+
+length(Count1)</code></pre>
+<pre><code>## [1] 11</code></pre>
+</div>
+<div id="problem-12" class="section level1">
+<h1>Problem 12</h1>
+<p>Count the number of words in a string variable</p>
+<pre class="r"><code>letter&lt;-c(&quot;jtymhrtyoilnk&quot;)
+strsplit(letter, split = &quot;&quot;)</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;j&quot; &quot;t&quot; &quot;y&quot; &quot;m&quot; &quot;h&quot; &quot;r&quot; &quot;t&quot; &quot;y&quot; &quot;o&quot; &quot;i&quot; &quot;l&quot; &quot;n&quot; &quot;k&quot;</code></pre>
+<pre class="r"><code>length(letter)</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="problem-13" class="section level1">
+<h1>Problem 13</h1>
+<p>Count the number of sentences in a string variable</p>
+<pre class="r"><code>strV&lt;-&quot;How can we understand R if we don&#39;t read&quot;
+sapply(strsplit(strV,&quot; &quot;),length)</code></pre>
+<pre><code>## [1] 9</code></pre>
+</div>
+<div id="problem-14-ask" class="section level1">
+<h1>Problem 14 <em>ASK</em></h1>
+<p>Count the number of times a specific character occurs in a string variable</p>
+<pre class="r"><code>Str1&lt;-&quot;bbbjshjfsiiiisihfksbjsuuuus&quot;
+(strsplit(Str1,&quot;&quot;))</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;j&quot; &quot;s&quot; &quot;h&quot; &quot;j&quot; &quot;f&quot; &quot;s&quot; &quot;i&quot; &quot;i&quot; &quot;i&quot; &quot;i&quot; &quot;s&quot; &quot;i&quot; &quot;h&quot; &quot;f&quot;
+## [18] &quot;k&quot; &quot;s&quot; &quot;b&quot; &quot;j&quot; &quot;s&quot; &quot;u&quot; &quot;u&quot; &quot;u&quot; &quot;u&quot; &quot;s&quot;</code></pre>
+<pre class="r"><code>table(Str1)</code></pre>
+<pre><code>## Str1
+## bbbjshjfsiiiisihfksbjsuuuus 
+##                           1</code></pre>
+</div>
+<div id="problem-15" class="section level1">
+<h1>Problem 15</h1>
+<p>Do a logical test to see if one word is found within the text of another string variable.</p>
+<pre class="r"><code>Word&lt;-&quot;Learning&quot;
+sentence&lt;-&quot; Learning R is hard &quot;
+
+grepl(Word,sentence)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="problem-16-ask" class="section level1">
+<h1>Problem 16 ASK</h1>
+<p>Put the current computer time in milliseconds into a variable</p>
+<pre class="r"><code>print(as.numeric(Sys.time())*1000, digits=15)</code></pre>
+<pre><code>## [1] 1549924228924.86</code></pre>
+</div>
+<div id="problem-17" class="section level1">
+<h1>Problem 17</h1>
+</div>
+<div id="problem-18" class="section level1">
+<h1>Problem 18</h1>
+</div>
+<div id="problem-19" class="section level1">
+<h1>Problem 19</h1>
+<p>Output the contents of a variable to a .txt file</p>
+</div>
+<div id="problem-20" class="section level1">
+<h1>Problem 20</h1>
+<p>Create a variable that stores a 20x20 matrix of random numbers</p>
+</div>
+<div id="problem-21" class="section level1">
+<h1>Problem 21</h1>
+<p>Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

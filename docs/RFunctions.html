@@ -383,6 +383,9 @@ div.tocify {
   <a href="RBasics.html">R Basic's</a>
 </li>
 <li>
+  <a href="RFunctions.html">R Functions</a>
+</li>
+<li>
   <a href="Links.html">Links</a>
 </li>
       </ul>
@@ -403,6 +406,534 @@ div.tocify {
 
 
 <p>R Functions HW Assignment.</p>
+<div id="general-bits" class="section level1">
+<h1>General bits</h1>
+<p>help(topic) This function operates in R to provide information on accessing multiple operators via the internet EG:</p>
+<pre class="r"><code>help(lm)</code></pre>
+<p>?topic</p>
+<p>ls() return a vector of character strings giving the names of the objects in the specified environment EG:</p>
+<pre class="r"><code>Ob &lt;- 1
+ls(pattern = &quot;O&quot;)</code></pre>
+<pre><code>## [1] &quot;Ob&quot;          &quot;Odd_numbers&quot;</code></pre>
+<pre class="r"><code>ls(pattern= &quot;O&quot;, all.names = TRUE)   </code></pre>
+<pre><code>## [1] &quot;Ob&quot;          &quot;Odd_numbers&quot;</code></pre>
+<pre class="r"><code>myfunc &lt;- function() {ls()}
+myfunc()</code></pre>
+<pre><code>## character(0)</code></pre>
+<pre class="r"><code>myfunc &lt;- function() {y &lt;- 1; ls()}
+myfunc()               </code></pre>
+<pre><code>## [1] &quot;y&quot;</code></pre>
+<p>lists all the files in a directory.</p>
+<pre class="r"><code>dir(path = &quot;.&quot;)</code></pre>
+<pre><code>##  [1] &quot;_site.yml&quot;               &quot;docs&quot;                   
+##  [3] &quot;images&quot;                  &quot;index.html&quot;             
+##  [5] &quot;index.Rmd&quot;               &quot;LabJournalWebsite.Rproj&quot;
+##  [7] &quot;Links.html&quot;              &quot;Links.Rmd&quot;              
+##  [9] &quot;RBasics_cache&quot;           &quot;RBasics.html&quot;           
+## [11] &quot;RBasics.Rmd&quot;             &quot;README.html&quot;            
+## [13] &quot;README.md&quot;               &quot;RFunctions_cache&quot;       
+## [15] &quot;RFunctions.Rmd&quot;          &quot;site_libs&quot;</code></pre>
+<p>list.files() produces a character vector of the names of files or directories in the named directory.</p>
+<pre class="r"><code>#list.files()</code></pre>
+</div>
+<div id="input-and-output" class="section level1">
+<h1>Input and output</h1>
+<p>save() load() data() library() read.table() read.csv() scan() print() cat() write.table()</p>
+</div>
+<div id="data-creation" class="section level1">
+<h1>Data Creation</h1>
+<p>c() This is a generic function which combines its arguments.</p>
+<pre class="r"><code>Count1 &lt;-c(1,3,9,-22,22,6,7,10,15,4,25)
+length(Count1)</code></pre>
+<pre><code>## [1] 11</code></pre>
+<p>seq() Generate regular sequences. seq is a standard generic with a default method</p>
+<pre class="r"><code>Numbers_List &lt;-seq(1:100)
+
+for (i in 1:length(Numbers_List)){
+  print(Numbers_List[[i]])
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 11
+## [1] 12
+## [1] 13
+## [1] 14
+## [1] 15
+## [1] 16
+## [1] 17
+## [1] 18
+## [1] 19
+## [1] 20
+## [1] 21
+## [1] 22
+## [1] 23
+## [1] 24
+## [1] 25
+## [1] 26
+## [1] 27
+## [1] 28
+## [1] 29
+## [1] 30
+## [1] 31
+## [1] 32
+## [1] 33
+## [1] 34
+## [1] 35
+## [1] 36
+## [1] 37
+## [1] 38
+## [1] 39
+## [1] 40
+## [1] 41
+## [1] 42
+## [1] 43
+## [1] 44
+## [1] 45
+## [1] 46
+## [1] 47
+## [1] 48
+## [1] 49
+## [1] 50
+## [1] 51
+## [1] 52
+## [1] 53
+## [1] 54
+## [1] 55
+## [1] 56
+## [1] 57
+## [1] 58
+## [1] 59
+## [1] 60
+## [1] 61
+## [1] 62
+## [1] 63
+## [1] 64
+## [1] 65
+## [1] 66
+## [1] 67
+## [1] 68
+## [1] 69
+## [1] 70
+## [1] 71
+## [1] 72
+## [1] 73
+## [1] 74
+## [1] 75
+## [1] 76
+## [1] 77
+## [1] 78
+## [1] 79
+## [1] 80
+## [1] 81
+## [1] 82
+## [1] 83
+## [1] 84
+## [1] 85
+## [1] 86
+## [1] 87
+## [1] 88
+## [1] 89
+## [1] 90
+## [1] 91
+## [1] 92
+## [1] 93
+## [1] 94
+## [1] 95
+## [1] 96
+## [1] 97
+## [1] 98
+## [1] 99
+## [1] 100</code></pre>
+<p>rep() rep replicates the values in x. It is a generic function, and the (internal) default method is described here.</p>
+<pre class="r"><code>Numbers_List &lt;-rep(1:10,4)
+print(Numbers_List)</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10  1  2  3  4  5  6  7  8  9 10  1  2  3
+## [24]  4  5  6  7  8  9 10  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>data.frame() The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R’s modeling software</p>
+<pre class="r"><code>V&lt;-LETTERS[1:3]
+test&lt;-sample(V,20,replace = TRUE)
+(a &lt;- data.frame(x = 1, y = 1:20, test = test))</code></pre>
+<pre><code>##    x  y test
+## 1  1  1    A
+## 2  1  2    B
+## 3  1  3    A
+## 4  1  4    C
+## 5  1  5    A
+## 6  1  6    A
+## 7  1  7    B
+## 8  1  8    B
+## 9  1  9    C
+## 10 1 10    A
+## 11 1 11    C
+## 12 1 12    A
+## 13 1 13    C
+## 14 1 14    B
+## 15 1 15    B
+## 16 1 16    C
+## 17 1 17    B
+## 18 1 18    C
+## 19 1 19    B
+## 20 1 20    C</code></pre>
+<pre class="r"><code>data.frame(1, 1:30, sample(V, 10, replace = TRUE))</code></pre>
+<pre><code>##    X1 X1.30 sample.V..10..replace...TRUE.
+## 1   1     1                             C
+## 2   1     2                             B
+## 3   1     3                             B
+## 4   1     4                             B
+## 5   1     5                             A
+## 6   1     6                             B
+## 7   1     7                             A
+## 8   1     8                             C
+## 9   1     9                             A
+## 10  1    10                             C
+## 11  1    11                             C
+## 12  1    12                             B
+## 13  1    13                             B
+## 14  1    14                             B
+## 15  1    15                             A
+## 16  1    16                             B
+## 17  1    17                             A
+## 18  1    18                             C
+## 19  1    19                             A
+## 20  1    20                             C
+## 21  1    21                             C
+## 22  1    22                             B
+## 23  1    23                             B
+## 24  1    24                             B
+## 25  1    25                             A
+## 26  1    26                             B
+## 27  1    27                             A
+## 28  1    28                             C
+## 29  1    29                             A
+## 30  1    30                             C</code></pre>
+<pre class="r"><code>is.data.frame(a)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>list()<em>ask</em> Functions to construct, coerce and check for both kinds of R lists.</p>
+<p>matrix() matrix creates a matrix from the given set of values.</p>
+<pre class="r"><code>M &lt;- matrix(c(3:14), nrow = 4, byrow = TRUE)
+print(M)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3    4    5
+## [2,]    6    7    8
+## [3,]    9   10   11
+## [4,]   12   13   14</code></pre>
+<p>factor()<em>ask</em> The function factor is used to encode a vector as a factor (the terms ‘category’ and ‘enumerated type’ are also used for factors). If argument ordered is TRUE, the factor levels are assumed to be ordered. For compatibility with S there is also a function ordered.</p>
+<pre class="r"><code>factor(34455342)</code></pre>
+<pre><code>## [1] 34455342
+## Levels: 34455342</code></pre>
+<p>rbind() Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively. These are generic functions with methods for other R classes.</p>
+<pre class="r"><code>x1 &lt;- c(7, 4, 4, 9)                  
+x2 &lt;- c(5, 2, 8, 9)                 
+x3 &lt;- c(1, 2, 3, 4)                  
+data_1 &lt;- data.frame(x1, x2, x3)
+vector_1 &lt;- c(9, 8, 7) 
+rbind(data_1, vector_1)</code></pre>
+<pre><code>##   x1 x2 x3
+## 1  7  5  1
+## 2  4  2  2
+## 3  4  8  3
+## 4  9  9  4
+## 5  9  8  7</code></pre>
+<p>cbind() Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively. These are generic functions with methods for other R classes.</p>
+<pre class="r"><code>df1 = data.frame(name = c(&quot;Norlander&quot;,&quot;Annalouise&quot;,&quot;Marsha&quot;,&quot;Angelina&quot;), Graduated_projected = c(2020,2020,2020,2020))
+df2 = data.frame(Birth_place = c(&quot;Trinidad&quot;,&quot;U.S.A&quot;,&quot;Haiti&quot;,&quot;London&quot;), Birth_year = c(1990,1992,1995,1993))
+
+cbinded_df&lt;-cbind(df1,df2)
+cbinded_df</code></pre>
+<pre><code>##         name Graduated_projected Birth_place Birth_year
+## 1  Norlander                2020    Trinidad       1990
+## 2 Annalouise                2020       U.S.A       1992
+## 3     Marsha                2020       Haiti       1995
+## 4   Angelina                2020      London       1993</code></pre>
+</div>
+<div id="slicing-and-extracting-data" class="section level1">
+<h1>Slicing and extracting data</h1>
+<div id="indexing-vectors" class="section level2">
+<h2>indexing vectors</h2>
+<p>x[n] nth element</p>
+<p>x[-n] all but nth element</p>
+<p>x[1:n] first n elements</p>
+<p>x[-(1:n)] elements from n+1 to the end</p>
+<p>x[c(1,4,2)] specific elements</p>
+<p>x[“name”] elements named “name”</p>
+<p>x[x&gt;3] all elements greater than 3</p>
+<p>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</p>
+<p>x[x %in% c(“a”,“and”,“the”)] all elements in given set</p>
+</div>
+<div id="indexing-lists" class="section level2">
+<h2>Indexing lists</h2>
+<p>x[n] list with elements n</p>
+<p>x[[n]] nt h element of the list</p>
+<p>x[[“name”]] element of the list named “name”</p>
+<p>x$name id.</p>
+</div>
+<div id="indexing-matrices" class="section level2">
+<h2>Indexing matrices</h2>
+<p>x[i,j] element at row i, column j</p>
+<p>x[i,] row i</p>
+<p>x[,j] column j</p>
+<p>x[,c(1,3)] columns 1 and 3</p>
+<p>x[“name”,] row named “name”</p>
+</div>
+<div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level2">
+<h2>Indexing data frames (matrix indexing plus the following)</h2>
+<p>x[[“name”]] column named “name”</p>
+<p>x$nameid.</p>
+</div>
+<div id="variable-conversion" class="section level2">
+<h2>Variable conversion</h2>
+<p>as.data.frame(x) Functions to check if an object is a data frame, or coerce it if possible.</p>
+<pre class="r"><code>df2 &lt;- as.data.frame(matrix(1:10,3,4,7),1:5)
+print(df2)</code></pre>
+<pre><code>##   V1 V2 V3 V4
+## 1  1  2  3  4
+## 2  5  6  7  8
+## 3  9 10  1  2</code></pre>
+<p>as.numeric(x) Creates or coerces objects of type “numeric”. is.numeric is a more general test of an object being interpretable as numbers.</p>
+<pre class="r"><code>df1 &lt;- as.numeric(matrix(1:10,3,4,7),1:5)
+print(df1)</code></pre>
+<pre><code>##  [1]  1  5  9  2  6 10  3  7  1  4  8  2</code></pre>
+<p>as.logical(x)<em>ask</em></p>
+<pre class="r"><code>as.logical(0:5,1,2,8)</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p>as.character(x)<em>ask</em> Creates or coerces objects of type “numeric”. is.numeric is a more general test of an object being interpretable as numbers.</p>
+<pre class="r"><code>x = as.character(3.14)
+
+print((x))</code></pre>
+<pre><code>## [1] &quot;3.14&quot;</code></pre>
+</div>
+<div id="variable-information" class="section level2">
+<h2>Variable information</h2>
+<p>is.na(x) table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.</p>
+<pre class="r"><code>x&lt;-c(1,5,6,7,9,NA)
+is.na(x)</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<p>is.null(x) NULL represents the null object in R: it is a reserved word. NULL is often returned by expressions and functions whose value is undefined.</p>
+<pre class="r"><code>x&lt;-c(1,4,5,6,9,5,3,5,6,0)
+x &gt; 5</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>is.null(x)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>is.data.frame(x)<em>ask</em></p>
+<p>is.character(x)<em>ask</em></p>
+<p>length(x) Get or set the length of vectors (including lists) and factors, and of any other R object for which a method has been defined.</p>
+<pre class="r"><code>Count1 &lt;-c(1,3,9,-22,22,6,7,10,15,4,25)
+
+length(Count1)</code></pre>
+<pre><code>## [1] 11</code></pre>
+<p>dim(x)<em>ask</em></p>
+<p>dimnames(x)<em>ask</em></p>
+<p>nrow(x) nrow and ncol return the number of rows or columns present in x. NCOL and NROW do the same treating a vector as 1-column matrix, even a 0-length vector, compatibly with as.matrix() or cbind(), see the example</p>
+<pre class="r"><code>n&lt;- matrix(1:12 )
+nrow(n)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<p>ncol(x) ncol return the number of rows or columns present in x. NCOL and NROW do the same treating a vector as 1-column matrix, even a 0-length vector, compatibly with as.matrix() or cbind(), see the example</p>
+<pre class="r"><code>n&lt;- matrix(1:12,5 )
+ncol(n)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>class() R possesses a simple generic function mechanism which can be used for an object-oriented style of programming. Method dispatch takes place based on the class of the first argument to the generic function.</p>
+<pre class="r"><code>x&lt;-c(1,3, 5, 7, 8, 10)
+class(x)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>a&lt;-c(&#39;Norlander, Annalouise, Ana, Marsha&#39;)
+class(a)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>attributes()<em>ask</em> These functions access an object’s attributes. The first form below returns the object’s attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object’s attributes (if appropriate)</p>
+<pre class="r"><code>attributes(10)</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
+<div id="data-selection-and-manipulation" class="section level2">
+<h2>Data selection and manipulation</h2>
+<p>which.max() Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector.</p>
+<pre class="r"><code>Y&lt;-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)</code></pre>
+<pre><code>## Y
+## -22   1   3   4   6   7   9  10  15  22  25  56 
+##   1   1   1   1   1   2   1   1   1   4   1   1</code></pre>
+<pre class="r"><code>C=table(Y)
+
+names(which.max(C))</code></pre>
+<pre><code>## [1] &quot;22&quot;</code></pre>
+<p>which.min() Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector.</p>
+<pre class="r"><code>Y&lt;-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)</code></pre>
+<pre><code>## Y
+## -22   1   3   4   6   7   9  10  15  22  25  56 
+##   1   1   1   1   1   2   1   1   1   4   1   1</code></pre>
+<pre class="r"><code>C=table(Y)
+
+names(which.min(C))</code></pre>
+<pre><code>## [1] &quot;-22&quot;</code></pre>
+<p>which()</p>
+<p>sort() Sort (or order) a vector or factor (partially) into ascending or descending order. For ordering along more than one variable, e.g., for sorting data frames, see order.</p>
+<pre class="r"><code>Y&lt;-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+sort(Y)</code></pre>
+<pre><code>##  [1] -22   1   3   4   6   7   7   9  10  15  22  22  22  22  25  56</code></pre>
+<p>unique() unique returns a vector, data frame or array like x but with duplicate elements/rows removed.</p>
+<pre class="r"><code>Y&lt;-c(1:3, 32:23, 8 - 0:5)
+unique(Y)</code></pre>
+<pre><code>##  [1]  1  2  3 32 31 30 29 28 27 26 25 24 23  8  7  6  5  4</code></pre>
+<p>table() table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.</p>
+<pre class="r"><code>Y&lt;-c(1,3,9,-22,22,6,7,10,15,4,25,22,56,7,22,22)
+table(Y)</code></pre>
+<pre><code>## Y
+## -22   1   3   4   6   7   9  10  15  22  25  56 
+##   1   1   1   1   1   2   1   1   1   4   1   1</code></pre>
+<p>sample() sample takes a sample of the specified size from the elements of x using either with or without replacement.</p>
+<pre class="r"><code>x&lt;-c(1:12)
+sample(x)
+Bootstramping
+sample(x, replace = TRUE)</code></pre>
+</div>
+</div>
+<div id="math" class="section level1">
+<h1>Math</h1>
+<p>max()</p>
+<pre class="r"><code>Numbers_List &lt;-c(1,10,12,13,15,20,16,3,5,6,79,10)
+max(Numbers_List)</code></pre>
+<pre><code>## [1] 79</code></pre>
+<p>min()</p>
+<pre class="r"><code>Numbers_List &lt;-c(1,10,12,13,15,20,16,3,5,6,79,10)
+min(Numbers_List)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>range() range returns a vector containing the minimum and maximum of all the given arguments.</p>
+<pre class="r"><code>Numbers_List &lt;-c(1,10,12,13,15,20,16,3,5,6,79,10)
+range(Numbers_List)</code></pre>
+<pre><code>## [1]  1 79</code></pre>
+<p>sum() sum returns the sum of all the values present in its arguments.</p>
+<pre class="r"><code>Numbers_List &lt;-seq(1:100)
+sum(Numbers_List)</code></pre>
+<pre><code>## [1] 5050</code></pre>
+<p>mean() Generic function for the (trimmed) arithmetic mean.</p>
+<pre class="r"><code>Numbers_List &lt;-c(1,10,15,20)
+mean(Numbers_List)</code></pre>
+<pre><code>## [1] 11.5</code></pre>
+<p>median() Compute the sample median.</p>
+<pre class="r"><code>Numbers_List &lt;-c(1, 10 ,15 , 20)
+median(Numbers_List)</code></pre>
+<pre><code>## [1] 12.5</code></pre>
+<p>var() var, cov and cor compute the variance of x and the covariance or correlation of x and y if these are vectors. If x and y are matrices then the covariances (or correlations) between the columns of x and the columns of y are computed.</p>
+<pre class="r"><code>Numbers_List &lt;-c(1,10,12,13,15,20,16,3,5,6,79,10)
+var(Numbers_List)</code></pre>
+<pre><code>## [1] 427.0606</code></pre>
+<p>sd() This function computes the standard deviation of the values in x. If na.rm is TRUE then missing values are removed before computation proceeds.</p>
+<pre class="r"><code>Numbers_List &lt;-c(1,10,12,13,15,20,16,3,5,6,79,10)
+sd(Numbers_List)</code></pre>
+<pre><code>## [1] 20.66544</code></pre>
+<p>cor()<em>ask</em></p>
+<p>round() ceiling takes a single numeric argument x and returns a numeric vector containing the smallest integers not less than the corresponding elements of x.</p>
+<pre class="r"><code>x = 12.6
+round(x)</code></pre>
+<pre><code>## [1] 13</code></pre>
+<p>abs() abs(x) computes the absolute value of x, sqrt(x) computes the (principal) square root of x, √{x}.</p>
+<pre class="r"><code>x &lt;- c(-2,4,0,45,9,-4)
+abs(x)</code></pre>
+<pre><code>## [1]  2  4  0 45  9  4</code></pre>
+<div id="matrices" class="section level2">
+<h2>Matrices</h2>
+<p>t()</p>
+<p>diag() Extract or replace the diagonal of a matrix, or construct a diagonal matrix.</p>
+<pre class="r"><code>df2 &lt;-matrix(1:10,3,4,7)
+diag(df2)</code></pre>
+<pre><code>## [1] 1 6 1</code></pre>
+<pre class="r"><code>diag(4, 6, 2, names = TRUE)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    4    0
+## [2,]    0    4
+## [3,]    0    0
+## [4,]    0    0
+## [5,]    0    0
+## [6,]    0    0</code></pre>
+<p>rowSums() Form row and column sums and means for numeric arrays (or data frames).</p>
+<pre class="r"><code>df2 &lt;-matrix(1:10,3,4,7)
+print(df2)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10    1    2</code></pre>
+<pre class="r"><code>rowSums(df2)</code></pre>
+<pre><code>## [1] 10 26 22</code></pre>
+<p>colSums() Form row and column sums and means for numeric arrays (or data frames).</p>
+<pre class="r"><code>df2 &lt;-matrix(1:10,3,4,7)
+print(df2)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10    1    2</code></pre>
+<pre class="r"><code>colSums(df2)</code></pre>
+<pre><code>## [1] 15 18 11 14</code></pre>
+<p>rowMeans() Form row and column sums and means for numeric arrays (or data frames).</p>
+<pre class="r"><code>df2 &lt;-matrix(1:10,3,4,7)
+print(df2)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10    1    2</code></pre>
+<pre class="r"><code>rowMeans(df2)</code></pre>
+<pre><code>## [1] 2.5 6.5 5.5</code></pre>
+<p>colMeans()</p>
+<pre class="r"><code>df2 &lt;-matrix(1:10,3,4,7)
+print(df2)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10    1    2</code></pre>
+<pre class="r"><code>colMeans(df2)</code></pre>
+<pre><code>## [1] 5.000000 6.000000 3.666667 4.666667</code></pre>
+</div>
+<div id="advanced-data-processing" class="section level2">
+<h2>Advanced Data processing</h2>
+<p>apply()</p>
+<p>aggregate()</p>
+</div>
+<div id="strings" class="section level2">
+<h2>Strings</h2>
+<p>paste()</p>
+<p>strsplit()</p>
+<p>tolower()</p>
+<p>toupper</p>
+</div>
+<div id="plotting" class="section level2">
+<h2>Plotting</h2>
+<p>hist()</p>
+<pre class="r"><code>x&lt;-c(0, 1, 2, 6, 8, 10, 12)
+y&lt;-c(0, 4, 6, 6,7,10, 11)
+hist(x+y)</code></pre>
+<p><img src="RFunctions_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>plot()</p>
+<pre class="r"><code>x&lt;-c(0, 1, 2, 6, 8, 10, 12)
+y&lt;-c(0, 4, 6, 6,7,10, 11)
+plot(x)</code></pre>
+<p><img src="RFunctions_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+</div>
+<div id="distributions" class="section level2">
+<h2>Distributions</h2>
+<p>rnorm()</p>
+<pre class="r"><code>rnorm(10, mean=3, sd= 1)</code></pre>
+<pre><code>##  [1] 2.912369 3.905543 1.778659 2.576976 3.191299 2.047548 3.657657
+##  [8] 2.138311 4.591735 3.695790</code></pre>
+<p>runif()</p>
+<pre class="r"><code>x&lt;-c (1, 3, 5, 7,8)
+y&lt;-c(x+2)
+print(y)</code></pre>
+<pre><code>## [1]  3  5  7  9 10</code></pre>
+<pre class="r"><code>runif(x, min = 5 , max = 8)</code></pre>
+<pre><code>## [1] 7.617811 5.901258 5.960830 7.216942 7.552069</code></pre>
+</div>
+<div id="programming" class="section level2">
+<h2>Programming</h2>
+<p>show that you can define a function show that you can write a for loop show that you can write a while loop show that you can write an if else statement Explain what return() does inside a function, show you can use it Explain what break() does, show you can use it ##Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.</p>
+<p>ggplot2 dplyr shiny data.table reshape2 stringr</p>
+</div>
+</div>
 
 
 

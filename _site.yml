@@ -6,7 +6,7 @@ navbar:
       href: index.html
     - text: "R Basic's"
       href: RBasics.html
-      - text: "R Functions"
+    - text: "R Functions"
       href: RFunctions.html
     - text: "Links"
       href: Links.html
