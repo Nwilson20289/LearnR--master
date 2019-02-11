@@ -167,4 +167,32 @@ Put the current computer time in milliseconds into a variable
 ```{r}
 print(as.numeric(Sys.time())*1000, digits=15)
 ```
-#Problem 17 ask
+#Problem 17
+
+#Problem 18
+
+#Problem 19
+Output the contents of a variable to a .txt file
+
+```{r}
+
+```
+#Problem 20  
+Create a variable that stores a 20x20 matrix of random numbers
+
+```{r}
+
+```
+#Problem 21
+Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values
+
+```{r}
+
+```
+
+
+
+
+
+
+

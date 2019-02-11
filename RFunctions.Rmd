@@ -15,3 +15,261 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
  
 R Functions HW Assignment. 
+
+
+#General bits
+help(topic)
+This function operates in R to provide information on accessing multiple operators via the internet
+EG:
+```{r}
+help(lm)
+
+```
+
+?topic
+
+
+ls()
+return a vector of character strings giving the names of the objects in the specified environment
+EG:
+```{r}
+Ob <- 1
+ls(pattern = "O")
+ls(pattern= "O", all.names = TRUE)   
+myfunc <- function() {ls()}
+myfunc()
+myfunc <- function() {y <- 1; ls()}
+myfunc()               
+
+```
+
+
+lists all the files in a directory.
+```{r}
+dir(path = ".")
+```
+
+list.files()
+produces a character vector of the names of files or directories in the named directory.
+```{r}
+list.files()
+
+
+```
+
+# Input and output
+save()
+load()
+data()
+library()
+read.table()
+read.csv()
+scan()
+print()
+cat()
+write.table()
+
+
+#Data Creation
+c()
+This is a generic function which combines its arguments.
+```{r}
+Count1 <-c(1,3,9,-22,22,6,7,10,15,4,25)
+length(Count1)
+```
+seq()
+Generate regular sequences. seq is a standard generic with a default method
+```{r}
+Numbers_List <-seq(1:100)
+
+for (i in 1:length(Numbers_List)){
+  print(Numbers_List[[i]])
+}
+```
+
+rep()
+rep replicates the values in x. It is a generic function, and the (internal) default method is described here.
+```{r}
+Numbers_List <-rep(1:10,4)
+print(Numbers_List)
+
+```
+
+
+data.frame()
+The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software
+```{r}
+V<-LETTERS[1:3]
+test<-sample(V,20,replace = TRUE)
+(a <- data.frame(x = 1, y = 1:20, test = test))
+data.frame(1, 1:30, sample(V, 10, replace = TRUE))
+
+is.data.frame(a)
+
+```
+
+
+list()*ask*
+Functions to construct, coerce and check for both kinds of R lists.
+```{r}
+
+```
+
+
+matrix()
+matrix creates a matrix from the given set of values.
+```{r}
+M <- matrix(c(3:14), nrow = 4, byrow = TRUE)
+print(M)
+
+```
+
+factor()*ask*
+The function factor is used to encode a vector as a factor (the terms ‘category’ and ‘enumerated type’ are also used for factors). If argument ordered is TRUE, the factor levels are assumed to be ordered. For compatibility with S there is also a function ordered.
+```{r}
+
+factor(34455342)
+```
+
+rbind()
+Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively. These are generic functions with methods for other R classes.
+
+```{r}
+x1 <- c(7, 4, 4, 9)                  
+x2 <- c(5, 2, 8, 9)                 
+x3 <- c(1, 2, 3, 4)                  
+data_1 <- data.frame(x1, x2, x3)
+vector_1 <- c(9, 8, 7) 
+rbind(data_1, vector_1)
+```
+
+cbind()
+Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively. These are generic functions with methods for other R classes.
+```{r}
+df1 = data.frame(name = c("Norlander","Annalouise","Marsha","Angelina"), Graduated_projected = c(2020,2020,2020,2020))
+df2 = data.frame(Birth_place = c("Trinidad","U.S.A","Haiti","London"), Birth_year = c(1990,1992,1995,1993))
+
+cbinded_df<-cbind(df1,df2)
+cbinded_df
+
+```
+
+#Slicing and extracting data
+##indexing vectors
+x[n] nth element
+x[-n] all but nth element
+x[1:n] first n elements
+x[-(1:n)] elements from n+1 to the end
+x[c(1,4,2)] specific elements
+x[“name”] elements named “name”
+x[x>3] all elements greater than 3
+x[x > 3 & x < 5] all elements between 3 and 5
+x[x %in% c(“a”,“and”,“the”)] all elements in given set
+
+##Indexing lists
+x[n] list with elements n
+x[[n]] nt h element of the list
+x[[“name”]] element of the list named “name”
+x$name id.
+
+##Indexing matrices
+x[i,j] element at row i, column j
+x[i,] row i
+x[,j] column j
+x[,c(1,3)] columns 1 and 3
+x[“name”,] row named “name”
+
+##Indexing data frames (matrix indexing plus the following)
+x[[“name”]] column named “name”
+x$nameid.
+##Variable conversion
+as.data.frame(x)
+as.numeric(x)
+as.logical(x)
+as.character(x)
+##Variable information
+is.na(x)
+is.null(x)
+is.data.frame(x)
+is.numeric(x)
+is.character(x)
+length(x)
+dim(x)
+dimnames(x)
+nrow(x)
+ncol(x)
+class()
+attributes()
+##Data selection and manipulation
+which.max()
+which.min()
+which()
+sort()
+unique()
+table()
+sample()
+Math
+max()
+min()
+range()
+sum()
+mean()
+median()
+var()
+sd()
+cor()
+round()
+abs()
+##Matrices
+t()
+diag()
+rowSums()
+colSums()
+rowMeans()
+colMeans()
+##Advanced Data processing
+apply()
+aggregate()
+##Strings
+paste()
+strsplit()
+tolower()
+toupper
+##Plotting
+hist()
+plot()
+##Distributions
+rnorm()
+runif()
+##Programming
+show that you can define a function
+show that you can write a for loop
+show that you can write a while loop
+show that you can write an if else statement
+Explain what return() does inside a function, show you can use it
+Explain what break() does, show you can use it
+##Installing some packages
+Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.
+
+ggplot2
+dplyr
+shiny
+data.table
+reshape2
+stringr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
