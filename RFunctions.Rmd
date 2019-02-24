@@ -59,14 +59,48 @@ produces a character vector of the names of files or directories in the named di
 
 # Input and output
 save()
+save writes an external representation of R objects to the specified file.
+```{r}
+#save("1 2 3 4 2 42 13", list = character())
+#file = stop ("'file' specified")
+
+#ascii = FALSE version = NULL, envir = parent.frame(),
+  #   compress = isTRUE(!ascii), compression_level,
+    # eval.promises = TRUE, precheck = TRUE)
+
+#save.image(file = ".RData", version = NULL, ascii #= FALSE,
+ #          compress = !ascii, safe = TRUE)
+
+```
+
 load()
+Reload datasets written with the function save.
+```{r}
+#load(file, envir = parent.frame(), verbose = FALSE)#
+```
+
 data()
+
+
 library()
+
+
 read.table()
+
+
 read.csv()
+
+
 scan()
+
+
 print()
+
+
 cat()
+
+
+
 write.table()
 
 
@@ -631,11 +665,61 @@ runif(x, min = 5 , max = 8)
 
 ##Programming
 show that you can define a function
+```{r}
+x_mean <-c(1,3,9,-22,22,6,7,10,15,4,25)
+my_fun <-function(x_mean){ sum(x_mean)/length(x_mean)} 
+print(my_fun(x_mean))
+```
+
 show that you can write a for loop
+```{r}
+X<-c(1,2,3,4,5,6,7,8,9,10)
+x*2
+for(i in 1:10) {
+print(paste(X,'x', i, '=', X*i))
+}
+```
+
+
 show that you can write a while loop
+
+
+
+
 show that you can write an if else statement
+```{r}
+for (a in 1:100) {
+ if (a %% 3 == 0) {print("Fizz")}
+ else if (a %% 5 == 0) {print("Buzz")}
+ else print(a)
+}
+
+```
+
 Explain what return() does inside a function, show you can use it
+These functions provide the base mechanisms for defining new functions in the R language.
+
+```{r}
+for (a in 1:100) {
+ if (a %% 3 == 0) {print("Fizz")}
+ else if (a %% 5 == 0) {print("Buzz")}
+ else print(a)
+  
+  return
+  
+}
+```
+
+These functions provide the base mechanisms for defining new functions in the R language.
+
+
+
+
+
+
 Explain what break() does, show you can use it
+
+
 ##Installing some packages
 Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.
 
@@ -646,7 +730,7 @@ data.table
 reshape2
 stringr
 
-#
+
 
 
 

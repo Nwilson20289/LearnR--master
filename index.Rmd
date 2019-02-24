@@ -263,8 +263,14 @@ decrypt <- function(message) {
 # Question  6 
 Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.
 ```{r}
-sample(c(1,2,3,4,5,6),1)
-
+sample(c(1,2,3,4,5,6),2)
+total_sum<-0
+number_of_rolls<-0
+while(total_sum < 25){
+  number_of_rolls <- number_of_rolls+1
+  total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls
 ```
 
 
