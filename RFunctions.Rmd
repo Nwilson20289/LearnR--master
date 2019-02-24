@@ -429,7 +429,8 @@ sample takes a sample of the specified size from the elements of x using either 
 ```{r,eval=F}
 x<-c(1:12)
 sample(x)
-Bootstramping
+
+#BOOTHSTRAPING 
 sample(x, replace = TRUE)
 ```
 
@@ -644,6 +645,8 @@ shiny
 data.table
 reshape2
 stringr
+
+#
 
 
 
