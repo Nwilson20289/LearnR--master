@@ -450,14 +450,14 @@ myfunc()               </code></pre>
  #          compress = !ascii, safe = TRUE)</code></pre>
 <p>load() Reload datasets written with the function save.</p>
 <pre class="r"><code>#load(file, envir = parent.frame(), verbose = FALSE)#</code></pre>
-<p>data()</p>
-<p>library()</p>
-<p>read.table()</p>
-<p>read.csv()</p>
-<p>scan()</p>
-<p>print()</p>
-<p>cat()</p>
-<p>write.table()</p>
+<p>data() Loads specified data sets, or list the available data sets.</p>
+<p>library() library and require load and attach add-on packages.</p>
+<p>read.table() Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the fil</p>
+<p>read.csv() Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.</p>
+<p>scan() Read data into a vector or list from the console or file.</p>
+<p>print() print prints its argument and returns it invisibly (via invisible(x)). It is a generic function which means that new printing methods can be easily added for new classes.</p>
+<p>cat() Outputs the objects, concatenating the representations. cat performs much less conversion than print.</p>
+<p>write.table() write.table prints its required argument x (after converting it to a data frame if it is not one nor a matrix) to a file or connection.</p>
 </div>
 <div id="data-creation" class="section level1">
 <h1>Data Creation</h1>
@@ -697,6 +697,11 @@ cbinded_df</code></pre>
 <div id="indexing-matrices" class="section level2">
 <h2>Indexing matrices</h2>
 <p>x[i,j] element at row i, column j</p>
+<pre class="r"><code>matrix(1:9, nrow = 3, ncol = 3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
 <p>x[i,] row i</p>
 <p>x[,j] column j</p>
 <p>x[,c(1,3)] columns 1 and 3</p>
@@ -705,7 +710,7 @@ cbinded_df</code></pre>
 <div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level2">
 <h2>Indexing data frames (matrix indexing plus the following)</h2>
 <p>x[[“name”]] column named “name”</p>
-<p>x$nameid.</p>
+<p>x$nameid. he name to use for the column created from the list.</p>
 </div>
 <div id="variable-conversion" class="section level2">
 <h2>Variable conversion</h2>
@@ -911,13 +916,40 @@ print(df2)</code></pre>
 </div>
 <div id="advanced-data-processing" class="section level2">
 <h2>Advanced Data processing</h2>
-<p>apply()</p>
-<p>aggregate()</p>
+<p>apply() Returns a vector or array or list of values obtained by applying a function to margins of an array or matrix.</p>
+<p>aggregate() Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.</p>
 </div>
 <div id="strings" class="section level2">
 <h2>Strings</h2>
-<p>paste()</p>
-<p>strsplit()</p>
+<p>paste() Concatenate vectors after converting to character.</p>
+<pre class="r"><code>X&lt;-c(1,2,3,4,5,6,7,8,9,10)
+x*2</code></pre>
+<pre><code>## [1] -4  8  0 90 18 -8</code></pre>
+<pre class="r"><code>for(i in 1:10) {
+print(paste(X,&#39;x&#39;, i, &#39;=&#39;, X*i))
+}</code></pre>
+<pre><code>##  [1] &quot;1 x 1 = 1&quot;   &quot;2 x 1 = 2&quot;   &quot;3 x 1 = 3&quot;   &quot;4 x 1 = 4&quot;   &quot;5 x 1 = 5&quot;  
+##  [6] &quot;6 x 1 = 6&quot;   &quot;7 x 1 = 7&quot;   &quot;8 x 1 = 8&quot;   &quot;9 x 1 = 9&quot;   &quot;10 x 1 = 10&quot;
+##  [1] &quot;1 x 2 = 2&quot;   &quot;2 x 2 = 4&quot;   &quot;3 x 2 = 6&quot;   &quot;4 x 2 = 8&quot;   &quot;5 x 2 = 10&quot; 
+##  [6] &quot;6 x 2 = 12&quot;  &quot;7 x 2 = 14&quot;  &quot;8 x 2 = 16&quot;  &quot;9 x 2 = 18&quot;  &quot;10 x 2 = 20&quot;
+##  [1] &quot;1 x 3 = 3&quot;   &quot;2 x 3 = 6&quot;   &quot;3 x 3 = 9&quot;   &quot;4 x 3 = 12&quot;  &quot;5 x 3 = 15&quot; 
+##  [6] &quot;6 x 3 = 18&quot;  &quot;7 x 3 = 21&quot;  &quot;8 x 3 = 24&quot;  &quot;9 x 3 = 27&quot;  &quot;10 x 3 = 30&quot;
+##  [1] &quot;1 x 4 = 4&quot;   &quot;2 x 4 = 8&quot;   &quot;3 x 4 = 12&quot;  &quot;4 x 4 = 16&quot;  &quot;5 x 4 = 20&quot; 
+##  [6] &quot;6 x 4 = 24&quot;  &quot;7 x 4 = 28&quot;  &quot;8 x 4 = 32&quot;  &quot;9 x 4 = 36&quot;  &quot;10 x 4 = 40&quot;
+##  [1] &quot;1 x 5 = 5&quot;   &quot;2 x 5 = 10&quot;  &quot;3 x 5 = 15&quot;  &quot;4 x 5 = 20&quot;  &quot;5 x 5 = 25&quot; 
+##  [6] &quot;6 x 5 = 30&quot;  &quot;7 x 5 = 35&quot;  &quot;8 x 5 = 40&quot;  &quot;9 x 5 = 45&quot;  &quot;10 x 5 = 50&quot;
+##  [1] &quot;1 x 6 = 6&quot;   &quot;2 x 6 = 12&quot;  &quot;3 x 6 = 18&quot;  &quot;4 x 6 = 24&quot;  &quot;5 x 6 = 30&quot; 
+##  [6] &quot;6 x 6 = 36&quot;  &quot;7 x 6 = 42&quot;  &quot;8 x 6 = 48&quot;  &quot;9 x 6 = 54&quot;  &quot;10 x 6 = 60&quot;
+##  [1] &quot;1 x 7 = 7&quot;   &quot;2 x 7 = 14&quot;  &quot;3 x 7 = 21&quot;  &quot;4 x 7 = 28&quot;  &quot;5 x 7 = 35&quot; 
+##  [6] &quot;6 x 7 = 42&quot;  &quot;7 x 7 = 49&quot;  &quot;8 x 7 = 56&quot;  &quot;9 x 7 = 63&quot;  &quot;10 x 7 = 70&quot;
+##  [1] &quot;1 x 8 = 8&quot;   &quot;2 x 8 = 16&quot;  &quot;3 x 8 = 24&quot;  &quot;4 x 8 = 32&quot;  &quot;5 x 8 = 40&quot; 
+##  [6] &quot;6 x 8 = 48&quot;  &quot;7 x 8 = 56&quot;  &quot;8 x 8 = 64&quot;  &quot;9 x 8 = 72&quot;  &quot;10 x 8 = 80&quot;
+##  [1] &quot;1 x 9 = 9&quot;   &quot;2 x 9 = 18&quot;  &quot;3 x 9 = 27&quot;  &quot;4 x 9 = 36&quot;  &quot;5 x 9 = 45&quot; 
+##  [6] &quot;6 x 9 = 54&quot;  &quot;7 x 9 = 63&quot;  &quot;8 x 9 = 72&quot;  &quot;9 x 9 = 81&quot;  &quot;10 x 9 = 90&quot;
+##  [1] &quot;1 x 10 = 10&quot;   &quot;2 x 10 = 20&quot;   &quot;3 x 10 = 30&quot;   &quot;4 x 10 = 40&quot;  
+##  [5] &quot;5 x 10 = 50&quot;   &quot;6 x 10 = 60&quot;   &quot;7 x 10 = 70&quot;   &quot;8 x 10 = 80&quot;  
+##  [9] &quot;9 x 10 = 90&quot;   &quot;10 x 10 = 100&quot;</code></pre>
+<p>strsplit() Split the elements of a character vector x into substrings according to the matches to substring split within them.</p>
 <p>tolower()</p>
 <p>toupper</p>
 </div>
@@ -927,12 +959,12 @@ print(df2)</code></pre>
 <pre class="r"><code>x&lt;-c(0, 1, 2, 6, 8, 10, 12)
 y&lt;-c(0, 4, 6, 6,7,10, 11)
 hist(x+y)</code></pre>
-<p><img src="RFunctions_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="RFunctions_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <p>plot()</p>
 <pre class="r"><code>x&lt;-c(0, 1, 2, 6, 8, 10, 12)
 y&lt;-c(0, 4, 6, 6,7,10, 11)
 plot(x)</code></pre>
-<p><img src="RFunctions_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="RFunctions_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 </div>
 <div id="distributions" class="section level2">
 <h2>Distributions</h2>

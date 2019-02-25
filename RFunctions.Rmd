@@ -80,29 +80,30 @@ Reload datasets written with the function save.
 ```
 
 data()
+Loads specified data sets, or list the available data sets.
 
 
 library()
-
+library and require load and attach add-on packages.
 
 read.table()
-
+Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the fil
 
 read.csv()
-
+Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.
 
 scan()
-
+Read data into a vector or list from the console or file.
 
 print()
-
+print prints its argument and returns it invisibly (via invisible(x)). It is a generic function which means that new printing methods can be easily added for new classes.
 
 cat()
-
+Outputs the objects, concatenating the representations. cat performs much less conversion than print.
 
 
 write.table()
-
+write.table prints its required argument x (after converting it to a data frame if it is not one nor a matrix) to a file or connection.
 
 #Data Creation
 c()
@@ -263,6 +264,7 @@ x$name id.
 ##Indexing matrices
 x[i,j] element at row i, column j
 ```{r}
+matrix(1:9, nrow = 3, ncol = 3)
 
 ```
 
@@ -294,9 +296,8 @@ x[[“name”]] column named “name”
 ```
 
 x$nameid.
-```{r}
+he name to use for the column created from the list.
 
-```
 
 ##Variable conversion
 as.data.frame(x)
@@ -602,25 +603,29 @@ colMeans(df2)
 
 ##Advanced Data processing
 apply()
-```{r}
+Returns a vector or array or list of values obtained by applying a function to margins of an array or matrix.
 
-```
 
 aggregate()
-```{r}
+Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.
 
-```
 
 ##Strings
 paste()
+Concatenate vectors after converting to character.
 ```{r}
-
+X<-c(1,2,3,4,5,6,7,8,9,10)
+x*2
+for(i in 1:10) {
+print(paste(X,'x', i, '=', X*i))
+}
 ```
 
 strsplit()
-```{r}
+Split the elements of a character vector x into substrings according to the matches to substring split within them.
 
-```
+
+
 
 tolower()
 ```{r}
@@ -729,6 +734,7 @@ shiny
 data.table
 reshape2
 stringr
+
 
 
 

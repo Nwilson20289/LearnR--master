@@ -736,7 +736,7 @@ grepl(Word,sentence)</code></pre>
 <h1>Problem 16 ASK</h1>
 <p>Put the current computer time in milliseconds into a variable</p>
 <pre class="r"><code>print(as.numeric(Sys.time())*1000, digits=15)</code></pre>
-<pre><code>## [1] 1551048416857.14</code></pre>
+<pre><code>## [1] 1551112531219.79</code></pre>
 </div>
 <div id="problem-17" class="section level1">
 <h1>Problem 17</h1>
@@ -873,8 +873,9 @@ grepl(Word,sentence)</code></pre>
 <p>Frequency Counts Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.</p>
 <pre class="r"><code>a&lt;-&quot;some text that has some letters&quot;</code></pre>
 </div>
-<div id="question-3-ask-test-the-random-number-generator-test-the-random-number-generator-for-a-flat-distribution.-generate-a-few-million-random-numbers-between-0-and-100.-count-the-number-of-0s-1s-2s-3s-etc.-all-the-way-up-to-100.-look-at-the-counts-for-each-of-the-numbers-and-determine-if-they-are-relatively-equal.-for-example-you-could-plot-the-counts-in-excel-to-make-a-histogram.-if-all-of-the-bars-are-close-to-being-flat-then-each-number-had-an-equal-chance-of-being-selected-and-the-random-number-generator-is-working-without-bias." class="section level1">
-<h1>Question 3 * ask* Test the Random Number Generator Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</h1>
+<div id="question-3-ask" class="section level1">
+<h1>Question 3 ask</h1>
+<p>Test the Random Number Generator Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</p>
 <pre class="r"><code>a&lt;-runif(100,0,100)
 hist(a)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
@@ -938,9 +939,34 @@ number_of_rolls&lt;-0
 while(total_sum &lt; 25){
   number_of_rolls &lt;- number_of_rolls+1
   total_sum &lt;-total_sum+sample(c(1,2,3,4,5,6),1)
-}
-number_of_rolls</code></pre>
-<pre><code>## [1] 9</code></pre>
+}</code></pre>
+<div id="question-7" class="section level2">
+<h2>Question 7</h2>
+<p>Dice-rolling simulations. Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.</p>
+<pre class="r"><code>R2&lt;-sample(sample(2:12,size = 100,replace = TRUE, prob = table(outer(1:6,1:6,&quot;+&quot;)) / 36)
+)</code></pre>
+</div>
+</div>
+<div id="question-8" class="section level1">
+<h1>Question 8</h1>
+<p>Monte Hall problem. The monte-hall problem is as follows. A contestant in a game show is presented with three closed doors. They are told that a prize is behind one door, and two goats are behind the other two doors. They are asked to choose which door contains the prize. After making their choice the game show host opens one of the remaining two doors (not chosen by the contestant), and reveals a goat. There are now two door remaining. The contestant is asked if they would like to switch their choice to the other door, or keep their initial choice. The correct answer is that the participant should switch their initial choice, and choose the other door. This will increase their odds of winning. Demonstrate by monte-carlo simulation that the odds of winning is higher if the participant switches than if the participants keeps their original choice.</p>
+</div>
+<div id="question-9" class="section level1">
+<h1>Question 9</h1>
+<p>100 doors problem. Problem: You have 100 doors in a row that are all initially closed. You make 100 passes by the doors. The first time through, you visit every door and toggle the door (if the door is closed, you open it; if it is open, you close it). The second time you only visit every 2nd door (door 2, 4, 6, etc.). The third time, every 3rd door (door 3, 6, 9, etc.), etc, until you only visit the 100th door.</p>
+</div>
+<div id="question-10" class="section level1">
+<h1>Question 10</h1>
+<p>Question: What state are the doors in after the last pass? Which are open, which are closed?</p>
+</div>
+<div id="question-11" class="section level1">
+<h1>Question 11</h1>
+<p>99 Bottles of Beer Problem In this puzzle, write code to print out the entire “99 bottles of beer on the wall”&quot; song. For those who do not know the song, the lyrics follow this form: X bottles of beer on the wall X bottles of beer Take one down, pass it around X-1 bottles of beer on the wall</p>
+<p>Where X and X-1 are replaced by numbers of course, from 99 all the way down to 0.</p>
+</div>
+<div id="question-12" class="section level1">
+<h1>Question 12</h1>
+<p>Random Tic-Tac-Toe Imagine that two players make completely random choices when playing tic-tac-toe. Each game will either end in a draw or one of the two players will win. Create a monte-carlo simulation of this “random” version of tic-tac-toe. Out 10,000 simulations, what proportion of the time is the game won versus drawn?</p>
 </div>
 
 
