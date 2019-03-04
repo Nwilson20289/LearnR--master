@@ -10,4 +10,6 @@ navbar:
       href: RFunctions.html
     - text: "Links"
       href: Links.html
+    - text: "Ggplot"
+      href: Ggplot.html
 output_dir: "docs"

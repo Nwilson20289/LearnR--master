@@ -1,5 +1,5 @@
 ---
-title: "Norlander Learn's R "
+title: "Norlander Learn's R  "
 output: html_document
 ---
 
@@ -298,4 +298,61 @@ Where X and X-1 are replaced by numbers of course, from 99 all the way down to 0
 
 # Question 12 
 Random Tic-Tac-Toe Imagine that two players make completely random choices when playing tic-tac-toe. Each game will either end in a draw or one of the two players will win. Create a monte-carlo simulation of this “random” version of tic-tac-toe. Out 10,000 simulations, what proportion of the time is the game won versus drawn?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+#data framee has rows n columns similar to excel.
+#data frame example 
+a<- data.frame()
+
+df1 = data.frame(name = c("Norlander","Annalouise","Marsha","Angelina"), 
+                 Graduated_projected = c(2020,2020,2020,2020))
+df2 = data.frame(Birth_place = c("Trinidad","U.S.A","Haiti","London"), 
+                 Birth_year = c(1990,1992,1995,1993))
+
+cbind(df1, df2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
