@@ -13,6 +13,23 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
+```{r}
+
+
+# add "each" to keep both copies of the names together 
+Names <- rep(c("Dara","Azalea","Barbi","Rowena","Fiona"),each=2)
+MF <- rnorm(10,45,25) 
+Condition <- rep(c("Social","Nonsocial"),5)
+# "times=" to repeat how many times you want A and N_A to be repeated 
+Aversity <- rep(c("A","N_A"),times=c(4,6))
+plot_df<- data.frame(Names, MF, Condition) 
+
+ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+ 
+  geom_line()+
+  geom_text(label=Names)+
+  theme_classic()
+```
+
  
 
 
