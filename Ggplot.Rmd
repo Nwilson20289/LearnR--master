@@ -14,7 +14,7 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 ```{r}
-
+library(ggplot2)
 
 # add "each" to keep both copies of the names together 
 Names <- rep(c("Dara","Azalea","Barbi","Rowena","Fiona"),each=2)
@@ -28,20 +28,26 @@ ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
   geom_line()+
   geom_text(label=Names)+
   theme_classic()
+
 ```
 
- 
+```{r}
+
+Average_Frequency_of_Social_Risk = a <- c(0,.75,45,5,50,45,60,50)
+Average_Frequency_of_NonSocial_Risk = b<- c(11,5,.75,45,25,55,60,55)
+plot_df <- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=Average_Frequency_of_Social_Risk,
+    y=Average_Frequency_of_NonSocial_Risk))+
+ geom_smooth(method=lm)+
+ theme_classic()+
+  geom_point()
 
 
+```
 
-
-
-
-
-
-
-
-
+  
 
 
 

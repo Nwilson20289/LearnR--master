@@ -408,7 +408,32 @@ div.tocify {
 </div>
 
 
+<pre class="r"><code>library(ggplot2)
 
+# add &quot;each&quot; to keep both copies of the names together 
+Names &lt;- rep(c(&quot;Dara&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;,&quot;Rowena&quot;,&quot;Fiona&quot;),each=2)
+MF &lt;- rnorm(10,45,25) 
+Condition &lt;- rep(c(&quot;Social&quot;,&quot;Nonsocial&quot;),5)
+# &quot;times=&quot; to repeat how many times you want A and N_A to be repeated 
+Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot;),times=c(4,6))
+plot_df&lt;- data.frame(Names, MF, Condition) 
+
+ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+ 
+  geom_line()+
+  geom_text(label=Names)+
+  theme_classic()</code></pre>
+<p><img src="Ggplot_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>Average_Frequency_of_Social_Risk = a &lt;- c(0,.75,45,5,50,45,60,50)
+Average_Frequency_of_NonSocial_Risk = b&lt;- c(11,5,.75,45,25,55,60,55)
+plot_df &lt;- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=Average_Frequency_of_Social_Risk,
+    y=Average_Frequency_of_NonSocial_Risk))+
+ geom_smooth(method=lm)+
+ theme_classic()+
+  geom_point()</code></pre>
+<p><img src="Ggplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 
 
 
