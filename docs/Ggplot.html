@@ -423,7 +423,8 @@ ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
   geom_text(label=Names)+
   theme_classic()</code></pre>
 <p><img src="Ggplot_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>Average_Frequency_of_Social_Risk = a &lt;- c(0,.75,45,5,50,45,60,50)
+<pre class="r"><code>library(ggplot2)
+Average_Frequency_of_Social_Risk = a &lt;- c(0,.75,45,5,50,45,60,50)
 Average_Frequency_of_NonSocial_Risk = b&lt;- c(11,5,.75,45,25,55,60,55)
 plot_df &lt;- data.frame(a,b)
 
@@ -434,6 +435,46 @@ ggplot(plot_df, aes(x=Average_Frequency_of_Social_Risk,
  theme_classic()+
   geom_point()</code></pre>
 <p><img src="Ggplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>library(ggplot2)
+factor_one &lt;- rep(as.factor(c(&quot;4:6&quot;,&quot;6:9&quot;,&quot;4:9&quot;)),2)
+factor_two &lt;- rep(as.factor(c(&quot;Wide Base&quot;,&quot;Wide Top&quot;)),3)
+dv_means &lt;- c(20,30,40,20,40,40)
+dv_SEs   &lt;- c(4,3.4,4,3,2,4)
+plot_df &lt;- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+# basic bar graph
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)</code></pre>
+<p><img src="Ggplot_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code># adding error bars, customizing
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                group=factor_two,
+                    
+color=factor_two,                    fill=factor_two))+    
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)+
+  coord_cartesian(ylim=c(0,100))+
+  xlab(&quot;Top-to-Base Ratio&quot;)+
+  ylab(&quot;Estimate(xids)&quot;)+
+  ggtitle(&quot;&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="Ggplot_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>score &lt;- rnorm(100,0,1)
+n &lt;- 1:100
+plot_df &lt;- data.frame(score,n)
+ggplot(plot_df, aes(x=score))+
+  geom_histogram(bins=10,
+                 color=&quot;white&quot;)</code></pre>
+<p><img src="Ggplot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 
 
 

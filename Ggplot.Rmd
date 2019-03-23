@@ -32,7 +32,7 @@ ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
 ```
 
 ```{r}
-
+library(ggplot2)
 Average_Frequency_of_Social_Risk = a <- c(0,.75,45,5,50,45,60,50)
 Average_Frequency_of_NonSocial_Risk = b<- c(11,5,.75,45,25,55,60,55)
 plot_df <- data.frame(a,b)
@@ -49,6 +49,51 @@ ggplot(plot_df, aes(x=Average_Frequency_of_Social_Risk,
 
   
 
+
+```{r}
+library(ggplot2)
+factor_one <- rep(as.factor(c("4:6","6:9","4:9")),2)
+factor_two <- rep(as.factor(c("Wide Base","Wide Top")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+# basic bar graph
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat="identity", position="dodge")
+# adding error bars, customizing
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                group=factor_two,
+                    
+color=factor_two,                    fill=factor_two))+    
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(0,100))+
+  xlab("Top-to-Base Ratio")+
+  ylab("Estimate(xids)")+
+  ggtitle("")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+  
+```
+
+
+```{r}
+score <- rnorm(100,0,1)
+n <- 1:100
+plot_df <- data.frame(score,n)
+ggplot(plot_df, aes(x=score))+
+  geom_histogram(bins=10,
+                 color="white")
+```
 
 
 
