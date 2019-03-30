@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling(Flanker Anaylsis"
+title: "Data Wrangling Flanker Anaylsis"
 output:
   html_document:
     toc: true
