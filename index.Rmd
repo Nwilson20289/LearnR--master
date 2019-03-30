@@ -322,7 +322,7 @@ df1 = data.frame(name = c("Norlander","Annalouise","Marsha","Angelina"),
 df2 = data.frame(Birth_place = c("Trinidad","U.S.A","Haiti","London"), 
                  Birth_year = c(1990,1992,1995,1993))
 
-cbind(df1, df2)
+cbind (df1, df2)
 ```
 
 
