@@ -196,7 +196,7 @@ ggplot(sequence_means, aes(x=n1_congruency, y=mean_RT,
                 width=.2,
                 color="black")+
   coord_cartesian(ylim=c(600,900))
-```
+
 
 
 
