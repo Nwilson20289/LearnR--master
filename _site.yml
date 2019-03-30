@@ -14,4 +14,6 @@ navbar:
       href: Ggplot.html
     - text: "Data Wrangling"
       href: DataWrangling.html
+    - text: "Common inferential tests"
+      href: Null-Hypothesis.html
 output_dir: "docs"
