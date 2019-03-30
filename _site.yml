@@ -12,6 +12,6 @@ navbar:
       href: Links.html
     - text: "Ggplot"
       href: Ggplot.html
-    - text: "Data Rangling"
-      href: DataRangling.html
+    - text: "Data Wrangling"
+      href: DataWrangling.html
 output_dir: "docs"
