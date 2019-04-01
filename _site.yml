@@ -16,4 +16,6 @@ navbar:
       href: DataWrangling.html
     - text: "Null-Hypothesis"
       href: Null-Hypothesis.html
+    - text: "Midterm"
+      href: Midterm.html
 output_dir: "docs"
