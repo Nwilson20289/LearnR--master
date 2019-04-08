@@ -10,7 +10,145 @@ output:
     #code_folding: hide
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
+
+## Flanker task
+
+
+In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers). 
+
+The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials. 
+
+## Load the data and libraries you will use
+
+
+```{r}
+
+library(data.table)
+library(dplyr)
+library(ggplot2)
+library(bit64)
+
+
+# get the file names
+file_names <- list.files(path="FlankerData")
+
+# create headers for each column
+the_headers <- c("stimulus","congruency","proportion",
+                 "block","condition","dualtask","unknown",
+                 "stimulus_onset","response_time","response","subject")
+# Load data
+# create empty dataframe
+all_data<-data.frame()
+
+# loop to add each file to the dataframe
+for(i in file_names){
+  one_subject <- fread(paste("FlankerData/",i, sep=""))
+  names(one_subject) <- the_headers
+  one_subject$subject <- rep(i,dim(one_subject)[1])
+  one_subject <- cbind(one_subject, trial= 1:dim(one_subject)[1])
+  all_data <- rbind(all_data,one_subject)
+}
+
+```
+
+## Pre-processing
+
+Create an accuracy column that codes whether the response was correct or incorrect on each trial 
+
+```{r}
+center_let<-unlist(lapply(strsplit(all_data$stimulus,""),
+                         FUN=function(x)unlist(x)[2]))
+
+all_data<-cbind(all_data,center_let)
+
+all_data<-all_data %>%
+    mutate(response=tolower(response),
+    center_let=tolower(center_let),
+    accuracy=response==center_let)
+  
+
+```
+
+### Get Reaction time on each trial
+
+ Add a column that calculates the reaction time on each trial.
+
+
+```{r}
+
+# Somehow the stimulus and the response time are the same number?
+
+all_data <- all_data %>%
+              mutate(RT = as.integer(response_time - stimulus_onset))
+
+```
+
+
+## Checks
+
+Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.
+
+```{r}
+
+Sub_Trials <- all_data %>%
+                  mutate(subject = as.factor(subject),
+                         congruency = as.factor(congruency)) %>%
+                  group_by(subject,congruency) %>%
+                  summarise(num_trials = length(RT),
+                            mean_RT = mean(RT),
+                            mean_accuracy = mean(accuracy))
+knitr::kable(Sub_Trials)
+```
+
+
+
+### Exclusion
+
+Exclude all RTs that are longer than 2000 ms
+
+```{r}
+
+# Reaction Time =0 somehow the stimulus and response are the same number
+Slow_RT <- all_data %>%
+              filter(RT < 2000)
+```
+
+## Analysis
+
+### Reaction Time analysis
+
+1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
+
+```{r}
+Subject_Trials_meanRTs <- Slow_RT %>%
+                    filter(accuracy == TRUE) %>%
+                    group_by(subject,congruency) %>%
+                    summarise(mean_RT = mean(RT))
+```
+
+2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
+
+```{r}
+
+ congruency_means <- Subject_Trials_meanRTs %>%
+                      group_by(congruency) %>%
+                      summarise(meanRT = mean(mean_RT),
+                                SEM = sd(mean_RT)/sqrt(length(mean_RT)))
+knitr::kable(congruency_means)
+
+ggplot(congruency_means, aes(x=congruency,y=meanRT,
+                             fill=congruency))+
+  geom_bar(stat="identity")+
+  theme_classic(base_size=12)+
+  ylab("Mean Reaction Time ")+
+  geom_errorbar(aes(ymin=meanRT-SEM,
+                    ymax=meanRT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(100,1000))
 
