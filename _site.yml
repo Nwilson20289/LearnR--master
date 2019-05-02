@@ -16,4 +16,6 @@ navbar:
       href: DataWrangling.html
     - text: "Null-Hypothesis"
       href: Null-Hypothesis.html
+    - text: "Shiny APP PJ"
+      href: Shiny-APP-PJ.html
 output_dir: "docs"

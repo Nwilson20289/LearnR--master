@@ -1,0 +1,70 @@
+---
+title: "Snakes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+n=100
+
+# We have 6 extra columns because we want to represent throwing of the dice which results in a final square > 100
+M=matrix(0,n+1,n+1+6)
+rownames(M)=0:n
+colnames(M)=0:(n+6)
+
+# set probabilities of landing on each square assuming that there aren't any snakes or ladders
+for(i in 1:6){
+  diag(M[,(i+1):(i+1+n)])=1/6
+}
+
+# account for 'bounce back' if a dice roll leads to a final score > 100
+for(i in 96:100) {
+  for(c in 102:107) {
+    idx = 101 - (c - 101)  
+    M[i, idx] = M[i, idx] + M[i, c]
+  }  
+}
+
+M=M[,1:(n+1)]
+
+# add in the snakes and ladders
+starting = c(4,9,17,20,28,40,51,54,62,64,63,71,93,95,92)
+ending   = c(14,31,7,38,84,59,67,34,19,60,81,91,73,75,78)
+
+
+M <- 1:106
+  names(M) <- as.character(1:106)
+  M[transitions[,1]] <- transitions[,2]
+
+  lastpos <- 0
+  curpos <- history <- NULL
+  while(all(curpos < 100)) {
+    curpos <- lastpos + sample(1:6, nplayers, repl=TRUE)
+    curpos <- transmat[curpos]
+    if(any(curpos > 100)) curpos[curpos > 100] <- lastpos[curpos > 100]
+
+    lastpos <- curpos
+    history <- rbind(history, curpos)
+  }
+
+  history
+
+# for output from chutesNladders, which of the players won?
+whowon <-
+function(chutesOutput)
+  min(which(chutesOutput[nrow(chutesOutput),] == 100))
+
+# for output from chutesNladders, how many total spins were there?
+nspins <-
+function(chutesOutput)
+  ncol(chutesOutput)*(nrow(chutesOutput)-1) +
+    whowon(chutesOutput)
+
+```
+
+

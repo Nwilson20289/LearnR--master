@@ -11,7 +11,7 @@
 
 
 
-<title>GGPLOT</title>
+<title>Snakes</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -267,101 +264,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -412,83 +314,71 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GGPLOT</h1>
+<h1 class="title toc-ignore">Snakes</h1>
 
 </div>
 
 
-<pre class="r"><code>library(ggplot2)
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<pre class="r"><code># function to simulate chutes and ladders game
+chutesNladders &lt;-
+function(nplayers=1)
+{
+  transitions &lt;- rbind(
+    c(1, 38),
+    c(4, 14),
+    c(9, 31),
+    c(16, 6),
+    c(21, 42),
+    c(28, 84),
+    c(36, 44),
+    c(48, 26),
+    c(49, 11),
+    c(51, 67),
+    c(56, 53),
+    c(62, 19),
+    c(64, 60),
+    c(71, 91),
+    c(80, 100),
+    c(87, 24),
+    c(93, 73),
+    c(95, 75),
+    c(98, 78))
 
-# add &quot;each&quot; to keep both copies of the names together 
-Names &lt;- rep(c(&quot;Dara&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;,&quot;Rowena&quot;,&quot;Fiona&quot;),each=2)
-MF &lt;- rnorm(10,45,25) 
-Condition &lt;- rep(c(&quot;Social&quot;,&quot;Nonsocial&quot;),5)
-# &quot;times=&quot; to repeat how many times you want A and N_A to be repeated 
-Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot;),times=c(4,6))
-plot_df&lt;- data.frame(Names, MF, Condition) 
+  transmat &lt;- 1:106
+  names(transmat) &lt;- as.character(1:106)
+  transmat[transitions[,1]] &lt;- transitions[,2]
 
-ggplot(plot_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+ 
-  geom_line()+
-  geom_text(label=Names)+
-  theme_classic()</code></pre>
-<p><img src="Ggplot_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>library(ggplot2)
-Average_Frequency_of_Social_Risk = a &lt;- c(0,.75,45,5,50,45,60,50)
-Average_Frequency_of_NonSocial_Risk = b&lt;- c(11,5,.75,45,25,55,60,55)
-plot_df &lt;- data.frame(a,b)
+  lastpos &lt;- 0
+  curpos &lt;- history &lt;- NULL
+  while(all(curpos &lt; 100)) {
+    curpos &lt;- lastpos + sample(1:6, nplayers, repl=TRUE)
+    curpos &lt;- transmat[curpos]
+    if(any(curpos &gt; 100)) curpos[curpos &gt; 100] &lt;- lastpos[curpos &gt; 100]
 
-# basic scatterplot
-ggplot(plot_df, aes(x=Average_Frequency_of_Social_Risk,
-    y=Average_Frequency_of_NonSocial_Risk))+
- geom_smooth(method=lm)+
- theme_classic()+
-  geom_point()</code></pre>
-<p><img src="Ggplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>library(ggplot2)
-factor_one &lt;- rep(as.factor(c(&quot;4:6&quot;,&quot;6:9&quot;,&quot;4:9&quot;)),2)
-factor_two &lt;- rep(as.factor(c(&quot;Wide Base&quot;,&quot;Wide Top&quot;)),3)
-dv_means &lt;- c(20,30,40,20,40,40)
-dv_SEs   &lt;- c(4,3.4,4,3,2,4)
-plot_df &lt;- data.frame(factor_one,
-                      factor_two,
-                      dv_means,
-                      dv_SEs)
-# basic bar graph
-ggplot(plot_df, aes(x=factor_one,y=dv_means,
-                    group=factor_two,
-                    color=factor_two))+
-  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)</code></pre>
-<p><img src="Ggplot_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code># adding error bars, customizing
-ggplot(plot_df, aes(x=factor_one,y=dv_means,
-                group=factor_two,
-                    
-color=factor_two,                    fill=factor_two))+    
-  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
-  geom_errorbar(aes(ymin=dv_means-dv_SEs,
-                    ymax=dv_means+dv_SEs),
-                position=position_dodge(width=0.9),
-                width=.2,
-                color=&quot;black&quot;)+
-  coord_cartesian(ylim=c(0,100))+
-  xlab(&quot;Top-to-Base Ratio&quot;)+
-  ylab(&quot;Estimate(xids)&quot;)+
-  ggtitle(&quot;&quot;)+
-  theme_classic(base_size=12)+
-  theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="Ggplot_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<pre class="r"><code>score &lt;- rnorm(100,0,1)
-n &lt;- 1:100
-plot_df &lt;- data.frame(score,n)
-ggplot(plot_df, aes(x=score))+
-  geom_histogram(bins=10,
-                 color=&quot;white&quot;)</code></pre>
-<p><img src="Ggplot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+    lastpos &lt;- curpos
+    history &lt;- rbind(history, curpos)
+  }
+
+  history
+}
 
 
+# for output from chutesNladders, which of the players won?
+whowon &lt;-
+function(chutesOutput)
+  min(which(chutesOutput[nrow(chutesOutput),] == 100))
 
+# for output from chutesNladders, how many total spins were there?
+nspins &lt;-
+function(chutesOutput)
+  ncol(chutesOutput)*(nrow(chutesOutput)-1) +
+    whowon(chutesOutput)</code></pre>
 </div>
-</div>
+
+
+
 
 </div>
 

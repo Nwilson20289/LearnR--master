@@ -1,0 +1,63 @@
+---
+title: "My Title"
+subtitle: "SUBTILE"
+author: "Norlander Wilson"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: inverse, center, middle 
+
+# Opening Slide 
+---
+# A Header
+## First thing (second level head )
+-is how you create bullets 
+-bullet
+
+# Second Header 
+- more things about the second header 
+
+---
+
+Next slide 
+**Bold** this is to bold things. 
+
+---
+# figures and manipulation
+```{r, echo=FALSE, fig.align='center', fig.height=6}
+#echo=false hides the R code 
+# out.height use px 
+hist(rnorm(1000, 0, 1))
+
+```
+---
+```{r,echo=FALSE, fig.align='center', out.width=2000, fig.height= 2000}
+knitr::include_graphics("images/unknown.jpg")
+```
+
+# incremental display 
+
+## show this first
+-- 
+
+## Then show this 
+
+__
+
+## then show this 
+
+
+# Write Math expressions 
+
