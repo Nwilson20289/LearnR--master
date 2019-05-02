@@ -11,7 +11,7 @@
 
 
 
-<title>Shiny APP PJ</title>
+<title>Shiny-APP-PJ.html</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -314,78 +314,49 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Shiny APP PJ</h1>
+<h1 class="title toc-ignore">Shiny-APP-PJ.html</h1>
 
 </div>
 
 
-<style type="text/css">
-<p>.title { display: none; }</p>
-<pre class="r"><code>library(shiny)
+<p>library(shiny) library(data.table) library(dplyr)</p>
+<div id="define-ui-for-data-download-app--" class="section level1">
+<h1>Define UI for data download app —-</h1>
+<p>ui &lt;- fluidPage(</p>
+<p># App title —- titlePanel(“Downloading Ebola Data”),</p>
+<p># Sidebar layout with input and output definitions —- sidebarLayout(</p>
+<pre><code># Sidebar panel for inputs ----
+sidebarPanel(
+  
+  # Input: Choose dataset ----
+  selectInput(&quot;dataset&quot;, &quot;Choose a dataset:&quot;,
+              choices = c(&quot;Ebola Sudan&quot;,&quot;Ebola Zaire&quot;, &quot;Ebola Bundibugyo&quot; )),
+  
+  # Button
+  downloadButton(&quot;downloadData&quot;, &quot;Download&quot;)
+  
+),
 
-# Define UI for data download app ----
-ui &lt;- fluidPage(
-
-  # App title ----
-  titlePanel(&quot;Downloading Ebola Data&quot;),
-
-  # Sidebar layout with input and output definitions ----
-  sidebarLayout(
-
-    # Sidebar panel for inputs ----
-    sidebarPanel(
-
-      # Input: Choose dataset ----
-      selectInput(&quot;dataset&quot;, &quot;Choose a dataset:&quot;,
-                  choices = c(&quot;Guinea&quot;, &quot;Liberia&quot;, &quot;Mali&quot;,&quot;Senegal&quot;,&quot;Sierra Leone&quot;)),
-
-      # Button
-      downloadButton(&quot;downloadData&quot;, &quot;Download&quot;)
-
-    ),
-
-    # Main panel for displaying outputs ----
-    mainPanel(
-
-      tableOutput(&quot;table&quot;)
-
-    )
-
-  )
-)
-
-# Define server logic to display and download selected file ----
-server &lt;- function(input, output) {
-
-  # Reactive value for selected dataset ----
-  datasetInput &lt;- reactive({
-    switch(input$dataset,
-           &quot;rock&quot; = rock,
-           &quot;pressure&quot; = pressure,
-           &quot;cars&quot; = cars)
-  })
-
-  # Table of selected dataset ----
-  output$table &lt;- renderTable({
-    datasetInput()
-  })
-
-  # Downloadable csv of selected dataset ----
-  output$downloadData &lt;- downloadHandler(
-    filename = function() {
-      paste(input$dataset, &quot;.csv&quot;, sep = &quot;&quot;)
-    },
-    content = function(file) {
-      write.csv(datasetInput(), file, row.names = FALSE)
-    }
-  )
-
-}
-
-# Create Shiny app ----
-shinyApp(ui, server)</code></pre>
-<pre><code>## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.</code></pre>
-<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
+# Main panel for displaying outputs ----
+mainPanel(
+  
+  dataTableOutput(&quot;table&quot;)
+  
+)</code></pre>
+<p>) )</p>
+</div>
+<div id="define-server-logic-to-display-and-download-selected-file--" class="section level1">
+<h1>Define server logic to display and download selected file —-</h1>
+<p>server &lt;- function(input, output) {</p>
+<p># Reactive value for selected dataset —- datasetInput &lt;- reactive({ df &lt;- fread(“dataset.csv”) df &lt;- df %&gt;% filter(Virus == input$dataset) return(df) })</p>
+<p># Table of selected dataset —- output$table &lt;- renderDataTable({ datasetInput() })</p>
+<p># Downloadable csv of selected dataset —- output<span class="math inline">\(downloadData &lt;- downloadHandler(  filename= function() {  paste(input\)</span>dataset, “.csv”, sep = “”) }, content = function(file) { write.csv(datasetInput(), file, row.names = FALSE) } )</p>
+<p>}</p>
+</div>
+<div id="run-the-application" class="section level1">
+<h1>Run the application</h1>
+<p>shinyApp(ui = ui, server = server)</p>
+</div>
 
 
 
