@@ -1,5 +1,5 @@
 ---
-title: "Norlander Learn's R  "
+title: " Intail Building Blocks "
 output: html_document
 ---
 
@@ -230,11 +230,10 @@ Create a multiplication table Generate a matrix for a multiplication table. For 
 
 ```{r}
 X<-c(1,2,3,4,5,6,7,8,9,10)
-x*2
+X*2
 for(i in 1:10) {
 print(paste(X,'x', i, '=', X*i))
 }
-
 ```
 
 
