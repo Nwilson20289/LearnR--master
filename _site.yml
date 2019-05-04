@@ -8,8 +8,6 @@ navbar:
       href: RBasics.html
     - text: "R Functions"
       href: RFunctions.html
-    - text: "Links"
-      href: Links.html
     - text: "Ggplot"
       href: Ggplot.html
     - text: "Data Wrangling"
