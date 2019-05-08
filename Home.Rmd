@@ -1,0 +1,72 @@
+---
+title: "Home"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Norlander Wilson Journal
+
+##Email:
+Norlander3@gmail.com
+
+## EDUCATION
+May, 2020 	M.A. Experimental Psychology 
+		CUNY Brooklyn College 
+
+May, 2016       B.S. Psychology 
+		CUNY Brooklyn College	
+		Major: Psychology 
+		Minor: Neuroscience 
+		Concentration: Premed courses 
+		
+## RESEARCH EXPERIENCE
+###Faculty Supervisor: Angelo Dibello 
+###Social Health & Addiction Lab
+
+*	Research and collects data through complex techniques and procedures. 
+
+*	Interprets, synthesizes and analyzes data. 
+
+*	Plans and modifies research techniques, procedures, tests, equipment or software management. 
+
+*	Writes and edits materials for publication and presentation. 
+
+*	 Meets with faculty supervisor on regular basis to maintain ongoing communication regarding the quality of the assistant’s performance. 
+
+*	Performs other related duties as required.
+
+
+##Thesis Advisor: Angelo Dibello 
+###Research Project:
+
+*	 A Study Of Mistrust In the African American Participants. 
+
+
+##Faculty Supervisor: Guillermo Esber 
+###Behavioral Neurobiology Learning Lab                                                
+*	Prepping Skinner Boxes using Meta-associates
+
+*	Monitoring weight of rats for data collection
+
+*	Tracks rats progress using Meta-associates 
+*	Feeding rats based on weight 
+
+*	Organization of lab
+
+*	Assembling simple circuits and testing 
+
+
+##Pre-Med Advisor- Brahmadeo Dewprashad 
+###Research Project: The poisonous nature of the Mammea Americana Seed 
+
+*	Research and review scientific articles that attempted to extract  poisonous compound and compose a summarizations of each article. 
+
+*	Locate and obtain Mammea Americana for purposes of testing
+
+*	Monthly meeting with advisor to review progress with obtain the fruit 
+
+		
+
