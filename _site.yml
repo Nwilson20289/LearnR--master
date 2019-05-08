@@ -2,8 +2,10 @@ name: "Norlander Learn'S R "
 navbar:
   title: "Norlander Learn's R"
   left:
+    - text: "Home"
+      href: Home.html
     - text: "Intail Building Blocks"
-      href: Intail_Building_Blocks.html
+      href: IntailBuildingBlocks.html
     - text: "R Basic's"
       href: RBasics.html
     - text: "R Functions"

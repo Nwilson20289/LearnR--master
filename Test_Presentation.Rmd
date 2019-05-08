@@ -1,8 +1,8 @@
 ---
-title: "My Title"
-subtitle: "SUBTILE"
-author: "Norlander Wilson"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+title: "HTML Widgets for R"
+subtitle: "Creating a Website and Adding Widgets"
+author: "CUNY Brooklyn College,Norlander Wilson"
+date: "2019/5/12 "
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts]
