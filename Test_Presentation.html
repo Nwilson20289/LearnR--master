@@ -3,61 +3,67 @@
   <head>
     <title>HTML Widgets for R</title>
     <meta charset="utf-8" />
-    <meta name="author" content="CUNY Brooklyn College,Norlander Wilson" />
+    <meta name="author" content="CUNY Brooklyn College Norlander Wilson" />
+    <meta name="date" content="2019-05-15" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
-    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css/kunoichi.css" rel="stylesheet" />
+    <link href="libs/remark-css/rutgers-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
 # HTML Widgets for R
-## Creating a Website and Adding Widgets
-### CUNY Brooklyn College,Norlander Wilson
-### 2019/5/12
+## Creating your own HTML Widgets
+### CUNY Brooklyn College Norlander Wilson
+### 05/15/2019
 
 ---
 
 
 
 
-class: inverse, center, middle 
+--
+# What is a HTML Widgets Package?
 
-# Opening Slide 
+&lt;img src="images/G.jpg" width="350" style="display: block; margin: auto;" /&gt;
+--
+The htmlwidgets bundle that gives a structure to effectively making R ties to the libraries. These gadgets made utilizing the structure can be: 
+
+--
+
+
+- Utilized at the R comfort for information examination simply like customary R plots (by means of RStudio Viewer) 
+
+- Flawlessly inserted inside R Markdown records and Shiny web applications. 
+
+- Spared as independent site pages for impromptu sharing through email, Dropbox
 ---
-# A Header
-## First thing (second level head )
--is how you create bullets 
--bullet
+# Getting Started. 
+--
 
-# Second Header 
-- more things about the second header 
 
+**First**. 
+
+
+--
+* INSTALL THE HTMLWIDGETS PACKAGE. 
+&lt;img src="images/fl.png" width="300" style="display: block; margin: auto;" /&gt;
+--
+* INSTALL THE DEVTOOLS PACKAGE. 
+
+&lt;img src="images/GL.png" width="300" style="display: block; margin: auto;" /&gt;
 ---
-
-Next slide 
-**Bold** this is to bold things. 
-
----
-# figures and manipulation
-&lt;img src="Test_Presentation_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
----
-&lt;img src="images/unknown.jpg" width="2000" style="display: block; margin: auto;" /&gt;
-
-# incremental display 
-
-## show this first
--- 
-
-## Then show this 
-
-__
-
-## then show this 
+class: middle
+##Creating htmlWidget. 
 
 
-# Write Math expressions
+&lt;img src="images/F.png" width="350" style="display: block; margin: auto;" /&gt;
+
+--
+To create a new widget you can call the scaffoldWidget function to generate the basic structure for your widget. This function will:
+
+&lt;img src="images/exc.jpg" width="1000" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

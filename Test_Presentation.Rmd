@@ -1,11 +1,12 @@
 ---
 title: "HTML Widgets for R"
-subtitle: "Creating a Website and Adding Widgets"
-author: "CUNY Brooklyn College,Norlander Wilson"
-date: "2019/5/12 "
+subtitle: "Creating your own HTML Widgets"
+author: "CUNY Brooklyn College Norlander Wilson"
+date: "05/15/2019 "
 output:
   xaringan::moon_reader:
-    css: [default, metropolis, metropolis-fonts]
+  
+    css: [default,kunoichi, rutgers-fonts]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -17,47 +18,58 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-class: inverse, center, middle 
+--
+# What is a HTML Widgets Package?
 
-# Opening Slide 
+```{r,echo=FALSE, fig.align='center', out.width=350, fig.height= 350}
+knitr::include_graphics("images/G.jpg")
+```
+--
+The htmlwidgets bundle that gives a structure to effectively making R ties to the libraries. These gadgets made utilizing the structure can be: 
+
+--
+
+
+- Utilized at the R comfort for information examination simply like customary R plots (by means of RStudio Viewer) 
+
+- Flawlessly inserted inside R Markdown records and Shiny web applications. 
+
+- Spared as independent site pages for impromptu sharing through email, Dropbox
 ---
-# A Header
-## First thing (second level head )
--is how you create bullets 
--bullet
+# Getting Started. 
+--
 
-# Second Header 
-- more things about the second header 
 
----
+**First**. 
 
-Next slide 
-**Bold** this is to bold things. 
 
----
-# figures and manipulation
-```{r, echo=FALSE, fig.align='center', fig.height=6}
-#echo=false hides the R code 
-# out.height use px 
-hist(rnorm(1000, 0, 1))
+--
+* INSTALL THE HTMLWIDGETS PACKAGE. 
+```{r,echo=FALSE, fig.align='center', out.width=300, fig.height= 300}
+knitr::include_graphics("images/fl.png")
+```
+--
+* INSTALL THE DEVTOOLS PACKAGE. 
 
+```{r,echo=FALSE, fig.align='center', out.width=300, fig.height= 300}
+knitr::include_graphics("images/GL.png")
 ```
 ---
-```{r,echo=FALSE, fig.align='center', out.width=2000, fig.height= 2000}
-knitr::include_graphics("images/unknown.jpg")
+class: middle
+##Creating htmlWidget. 
+
+
+```{r,echo=FALSE, fig.align='center', out.width=350, fig.height= 350}
+knitr::include_graphics("images/F.png")
 ```
 
-# incremental display 
+--
+To create a new widget you can call the scaffoldWidget function to generate the basic structure for your widget. This function will:
 
-## show this first
--- 
-
-## Then show this 
-
-__
-
-## then show this 
+```{r,echo=FALSE, fig.align='center', out.width=1000, fig.height= 1000}
+knitr::include_graphics("images/exc.jpg")
+```
 
 
-# Write Math expressions 
+
 

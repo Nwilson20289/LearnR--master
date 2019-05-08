@@ -3,19 +3,19 @@ navbar:
   title: "Norlander Learn's R"
   left:
     - text: "Home"
-      href: Home.html
+      href:  Home.html
     - text: "Intail Building Blocks"
-      href: IntailBuildingBlocks.html
+      href:  IntailBuildingBlocks.html
     - text: "R Basic's"
-      href: RBasics.html
+      href:  RBasics.html
     - text: "R Functions"
-      href: RFunctions.html
+      href:  RFunctions.html
     - text: "Ggplot"
-      href: Ggplot.html
+      href:  Ggplot.html
     - text: "Data Wrangling"
-      href: DataWrangling.html
+      href:  DataWrangling.html
     - text: "Null-Hypothesis"
-      href: Null-Hypothesis.html
+      href:  Null-Hypothesis.html
     - text: "Shiny APP PJ"
-      href: Shiny-APP-PJ.html
+      href:  Shiny-APP-PJ.html
 output_dir: "docs"
