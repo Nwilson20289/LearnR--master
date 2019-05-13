@@ -96,35 +96,6 @@ This is handled in two step:
 ##EXAMPLE CODE OF HOW TO UTILIZE HTML WIDGETS. 
 - CREATE AN RMD FILE
 
-```r
-#' @import htmlwidgets
-#' @export
-sigma &lt;- function(gexf, drawEdges = TRUE, drawNodes = TRUE,
-                  width = NULL, height = NULL) {
-  
-  # read the gexf file
-  data &lt;- paste(readLines(gexf), collapse="\n")
-  
-  # create a list that contains the settings
-  settings &lt;- list(
-    drawEdges = drawEdges,
-    drawNodes = drawNodes
-  )
-  
-  # pass the data and settings using 'x'
-  x &lt;- list(
-    data = data,
-    settings = settings
-  )
-  
-  # create the widget
-  htmlwidgets::createWidget("sigma", x, width = width, height = height)
-}
-```
-
----
-
-
 
 ```r
 #' @export
@@ -136,10 +107,6 @@ renderSigma &lt;- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr &lt;- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, sigmaOutput, env, quoted = TRUE)
 }
-```
-
-
-```r
 library(shiny)
 
 gexf &lt;- system.file("examples/ediaspora.gexf.xml", package = "sigma")

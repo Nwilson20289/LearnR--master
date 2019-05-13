@@ -1,0 +1,39 @@
+---
+title: "Test2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#' @export
+sigmaOutput <- function(outputId, width = "100%", height = "400px") {
+  htmlwidgets::shinyWidgetOutput(outputId, "sigma", width, height, package = "sigma")
+}
+#' @export
+renderSigma <- function(expr, env = parent.frame(), quoted = FALSE) {
+  if (!quoted) { expr <- substitute(expr) } # force quoted
+  htmlwidgets::shinyRenderWidget(expr, sigmaOutput, env, quoted = TRUE)
+}
+```
+
+```{r}
+library(shiny)
+
+gexf <- system.file("examples/ediaspora.gexf.xml", package = "sigma")
+ui = shinyUI(fluidPage(
+  checkboxInput("drawEdges", "Draw Edges", value = TRUE),
+  checkboxInput("drawNodes", "Draw Nodes", value = TRUE),
+  sigmaOutput('sigma')
+))
+server = function(input, output) {
+  output$sigma <- renderSigma(
+    sigma(gexf, 
+          drawEdges = input$drawEdges, 
+          drawNodes = input$drawNodes)
+  )
+}
+shinyApp(ui = ui, server = server)
+```
