@@ -70,6 +70,101 @@ To create a new widget you can call the scaffoldWidget function to generate the 
 knitr::include_graphics("images/exc.jpg")
 ```
 
+---
+##Widget Sizing 
+
+--
+
+
+**WHY DO YOU NEED TO SIZE THE WIDGET?**
+
+
+--
+
+
+This is handled in two step: 
+
+
+
+--
+
+-  First, a sizing policy is specified for the widget. This is done via the  sizingPolicy argument to the createWidget function. 
+
+
+--
+
+-  The sizing policy is used by the framework to compute the correct width and height for a widget given where it is being rendered. 
+
+--
+```{r,echo=FALSE, fig.align='center', out.width=750, fig.height= 750}
+knitr::include_graphics("images/LR.png")
+```
+---
+##EXAMPLE CODE OF HOW TO UTILIZE HTML WIDGETS. 
+- CREATE AN RMD FILE
+```{r}
+#' @import htmlwidgets
+#' @export
+sigma <- function(gexf, drawEdges = TRUE, drawNodes = TRUE,
+                  width = NULL, height = NULL) {
+  
+  # read the gexf file
+  data <- paste(readLines(gexf), collapse="\n")
+  
+  # create a list that contains the settings
+  settings <- list(
+    drawEdges = drawEdges,
+    drawNodes = drawNodes
+  )
+  
+  # pass the data and settings using 'x'
+  x <- list(
+    data = data,
+    settings = settings
+  )
+  
+  # create the widget
+  htmlwidgets::createWidget("sigma", x, width = width, height = height)
+}
+```
+
+---
+
+
+```{r}
+#' @export
+sigmaOutput <- function(outputId, width = "100%", height = "400px") {
+  htmlwidgets::shinyWidgetOutput(outputId, "sigma", width, height, package = "sigma")
+}
+#' @export
+renderSigma <- function(expr, env = parent.frame(), quoted = FALSE) {
+  if (!quoted) { expr <- substitute(expr) } # force quoted
+  htmlwidgets::shinyRenderWidget(expr, sigmaOutput, env, quoted = TRUE)
+}
+```
+
+```{r}
+library(shiny)
+
+gexf <- system.file("examples/ediaspora.gexf.xml", package = "sigma")
+ui = shinyUI(fluidPage(
+  checkboxInput("drawEdges", "Draw Edges", value = TRUE),
+  checkboxInput("drawNodes", "Draw Nodes", value = TRUE),
+  sigmaOutput('sigma')
+))
+server = function(input, output) {
+  output$sigma <- renderSigma(
+    sigma(gexf, 
+          drawEdges = input$drawEdges, 
+          drawNodes = input$drawNodes)
+  )
+}
+shinyApp(ui = ui, server = server)
+```
+
+
+
+
 
 
 

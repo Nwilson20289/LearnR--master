@@ -64,6 +64,106 @@ class: middle
 To create a new widget you can call the scaffoldWidget function to generate the basic structure for your widget. This function will:
 
 &lt;img src="images/exc.jpg" width="1000" style="display: block; margin: auto;" /&gt;
+
+---
+##Widget Sizing 
+
+--
+
+
+**WHY DO YOU NEED TO SIZE THE WIDGET?**
+
+
+--
+
+
+This is handled in two step: 
+
+
+
+--
+
+-  First, a sizing policy is specified for the widget. This is done via the  sizingPolicy argument to the createWidget function. 
+
+
+--
+
+-  The sizing policy is used by the framework to compute the correct width and height for a widget given where it is being rendered. 
+
+--
+&lt;img src="images/LR.png" width="750" style="display: block; margin: auto;" /&gt;
+---
+##EXAMPLE CODE OF HOW TO UTILIZE HTML WIDGETS. 
+-CREATE AN RMD FILE
+
+
+```r
+#' @import htmlwidgets
+#' @export
+sigma &lt;- function(gexf, drawEdges = TRUE, drawNodes = TRUE,
+                  width = NULL, height = NULL) {
+  
+  # read the gexf file
+  data &lt;- paste(readLines(gexf), collapse="\n")
+  
+  # create a list that contains the settings
+  settings &lt;- list(
+    drawEdges = drawEdges,
+    drawNodes = drawNodes
+  )
+  
+  # pass the data and settings using 'x'
+  x &lt;- list(
+    data = data,
+    settings = settings
+  )
+  
+  # create the widget
+  htmlwidgets::createWidget("sigma", x, width = width, height = height)
+}
+```
+
+---
+
+
+
+```r
+#' @export
+sigmaOutput &lt;- function(outputId, width = "100%", height = "400px") {
+  htmlwidgets::shinyWidgetOutput(outputId, "sigma", width, height, package = "sigma")
+}
+#' @export
+renderSigma &lt;- function(expr, env = parent.frame(), quoted = FALSE) {
+  if (!quoted) { expr &lt;- substitute(expr) } # force quoted
+  htmlwidgets::shinyRenderWidget(expr, sigmaOutput, env, quoted = TRUE)
+}
+```
+
+
+```r
+library(shiny)
+
+gexf &lt;- system.file("examples/ediaspora.gexf.xml", package = "sigma")
+ui = shinyUI(fluidPage(
+  checkboxInput("drawEdges", "Draw Edges", value = TRUE),
+  checkboxInput("drawNodes", "Draw Nodes", value = TRUE),
+  sigmaOutput('sigma')
+))
+server = function(input, output) {
+  output$sigma &lt;- renderSigma(
+    sigma(gexf, 
+          drawEdges = input$drawEdges, 
+          drawNodes = input$drawNodes)
+  )
+}
+shinyApp(ui = ui, server = server)
+```
+
+```
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+```
+
+<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
