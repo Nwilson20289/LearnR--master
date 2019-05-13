@@ -46,7 +46,7 @@ The htmlwidgets bundle that gives a structure to effectively making R ties to th
 --
 * INSTALL THE HTMLWIDGETS PACKAGE. 
 ```{r,echo=FALSE, fig.align='center', out.width=300, fig.height= 300}
-knitr::include_graphics("images/fl.png")
+knitr::include_graphics("images/FL.png")
 ```
 --
 * INSTALL THE DEVTOOLS PACKAGE. 
