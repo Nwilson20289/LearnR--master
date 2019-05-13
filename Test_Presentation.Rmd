@@ -100,6 +100,8 @@ This is handled in two step:
 knitr::include_graphics("images/LR.png")
 ```
 ---
+
+
 ##EXAMPLE CODE OF HOW TO UTILIZE HTML WIDGETS. 
 - CREATE AN RMD FILE
 
@@ -130,6 +132,18 @@ server = function(input, output) {
 }
 shinyApp(ui = ui, server = server)
 ```
+
+---
+
+## Rerfernces 
+
+A framework for creating HTML widgets that render in various
+contexts including the R console, 'R Markdown' documents, and 'Shiny'
+web applications
+https://cran.r-project.org/web/packages/htmlwidgets/htmlwidgets.pdf
+
+EXAMPLE: 
+https://github.com/ramnathv/htmlwidgets/blob/master/vignettes/develop_intro.Rmd
 
 
 
